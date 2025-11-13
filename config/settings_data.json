@@ -180,15 +180,12 @@
           "custom_js": ""
         }
       },
-      "14041968213898805026": {
-        "type": "shopify://apps/aov-ai-free-gift-bxgy/blocks/app-embed-free-gift/de98edfe-90fa-4145-8a57-1055e0058723",
+      "3408556835904117202": {
+        "type": "shopify://apps/regios-discounts/blocks/regios_add_to_cart_embed/dc1514bb-4830-4102-bffa-e8b300bac5bd",
         "disabled": false,
-        "settings": {}
-      },
-      "8605505498557855500": {
-        "type": "shopify://apps/bogos-io-free-gift/blocks/app-embed/0432bba6-720a-4e95-be5a-b868386f7aa6",
-        "disabled": false,
-        "settings": {}
+        "settings": {
+          "reload_in_unsupported_themes": true
+        }
       }
     },
     "color_schemes": {
