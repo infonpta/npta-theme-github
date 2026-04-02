@@ -1,20 +1,18 @@
 /* ===================================================================
    HP-SECTIONS.CSS — Homepage Redesign Styles
    Mobile-first, cross-browser compatible, optimized
+   Buttons use existing .btn / .btn-label-down / .button-yg from base.css
    =================================================================== */
 
 /* --- Reset & Shared --- */
 .hp-hero, .hp-elite, .hp-finance, .hp-process,
-.hp-advantage, .hp-trending,
-.hp-courses {
+.hp-advantage, .hp-trending, .hp-courses {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .hp-hero *, .hp-elite *, .hp-finance *, .hp-process *,
-.hp-advantage *, .hp-trending *,
-.hp-courses * {
+.hp-advantage *, .hp-trending *, .hp-courses * {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
@@ -26,120 +24,25 @@
   --hp-font-body: Arial, Helvetica, sans-serif;
   --hp-font-label: 'Poppins', sans-serif;
   --hp-teal: #0f828c;
-  --hp-teal-dark: #0a6b73;
   --hp-lime: #C1FF72;
   --hp-dark: #141414;
   --hp-dark-green: #01241e;
   --hp-white: #ffffff;
   --hp-beige: #F1EFE8;
   --hp-gray: #f2f2e9;
-  --hp-max-width: 1300px;
-  --hp-gutter: clamp(20px, 4vw, 90px);
 }
 
-/* --- Buttons (sliding label animation) --- */
-.hp-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--hp-font-body);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1.12px;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  height: 49px;
-  padding: 0;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-  line-height: 49px;
-  position: relative;
+/* --- Outline button variant (not in base.css) --- */
+.hp-btn-outline {
+  background-color: transparent !important;
+  border: 2px solid #141414 !important;
+  color: #141414;
 }
-
-.hp-btn .hp-btn__label {
-  display: block;
-  margin: 0 30px;
-  height: 100%;
-  position: relative;
-  top: -100%;
-  transition: top 0.3s ease;
-  line-height: 49px;
-  white-space: nowrap;
+.hp-btn-outline .btn-label-down {
+  color: #141414 !important;
 }
-
-.hp-btn:hover .hp-btn__label {
-  top: 0%;
-}
-
-/* Primary: lime green bg, dark text */
-.hp-btn--primary {
-  background-color: var(--hp-lime);
-  border-color: var(--hp-lime);
-}
-.hp-btn--primary .hp-btn__label {
-  color: var(--hp-dark-green);
-}
-.hp-btn--primary:hover {
-  background-color: var(--hp-lime);
-}
-
-/* Teal: teal bg, white text */
-.hp-btn--teal {
-  background-color: var(--hp-teal);
-  border-color: var(--hp-teal);
-}
-.hp-btn--teal .hp-btn__label {
-  color: var(--hp-white);
-}
-.hp-btn--teal:hover {
-  background-color: var(--hp-teal);
-}
-
-/* Outline dark: transparent bg, dark border */
-.hp-btn--outline-dark {
-  background-color: transparent;
-  border-color: var(--hp-dark);
-}
-.hp-btn--outline-dark .hp-btn__label {
-  color: var(--hp-dark);
-}
-.hp-btn--outline-dark:hover {
-  background-color: transparent;
-}
-
-/* Outline white: transparent bg, white border */
-.hp-btn--outline-white {
-  background-color: transparent;
-  border-color: var(--hp-white);
-}
-.hp-btn--outline-white .hp-btn__label {
-  color: var(--hp-white);
-}
-.hp-btn--outline-white:hover {
-  background-color: transparent;
-}
-
-/* Secondary: yellow-green bg (same as existing button-yg) */
-.hp-btn--secondary {
-  background-color: var(--hp-lime);
-  border-color: var(--hp-lime);
-}
-.hp-btn--secondary .hp-btn__label {
-  color: var(--hp-dark-green);
-}
-
-.hp-btn--sm {
-  height: 42px;
-  line-height: 42px;
-  font-size: 13px;
-}
-.hp-btn--sm .hp-btn__label {
-  line-height: 42px;
-  margin: 0 24px;
+.hp-btn-outline:hover {
+  background-color: transparent !important;
 }
 
 /* ===================================================================
@@ -154,7 +57,6 @@
   justify-content: center;
   overflow: hidden;
 }
-
 .hp-hero__bg {
   position: absolute;
   inset: 0;
@@ -166,42 +68,33 @@
   object-fit: cover;
   display: block;
 }
-
 .hp-hero__overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
-
 .hp-hero__content {
   position: relative;
   z-index: 2;
   text-align: center;
   padding: 60px 20px;
-  max-width: 860px;
+  margin: 0 auto;
 }
-
 .hp-hero__title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(32px, 5.5vw, 65px);
   font-weight: 400;
-  color: var(--hp-white);
   line-height: 1.1;
   margin-bottom: 20px;
   text-transform: uppercase;
   text-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
 .hp-hero__sub {
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.8vw, 18px);
-  color: var(--hp-white);
   line-height: 1.6;
   margin-bottom: 32px;
   opacity: 0.95;
 }
-
 @media (min-width: 750px) {
   .hp-hero { min-height: 670px; }
   .hp-hero__content { padding: 80px 40px; }
@@ -211,32 +104,24 @@
    2. ELITE BUNDLE
    =================================================================== */
 .hp-elite {
-  padding: var(--hp-gutter) 20px;
+  padding: clamp(40px, 6vw, 90px) 20px;
   background: var(--hp-white);
 }
-
 .hp-elite__inner {
-  max-width: var(--hp-max-width);
   margin: 0 auto;
   text-align: center;
 }
-
 .hp-elite__title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(28px, 4vw, 48px);
   font-weight: 400;
-  color: var(--hp-dark);
   margin-bottom: 8px;
   text-transform: uppercase;
 }
-
 .hp-elite__subtitle {
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.5vw, 18px);
   color: #555;
   margin-bottom: 40px;
 }
-
 .hp-elite__grid {
   display: flex;
   flex-direction: column;
@@ -244,27 +129,20 @@
   align-items: center;
   text-align: left;
 }
-
 .hp-elite__image img {
   width: 100%;
-  max-width: 321px;
   height: auto;
-  border-radius: 12px;
   display: block;
-  margin: 0 auto;
 }
-
-.hp-elite__details { max-width: 520px; }
-
+.hp-elite__details {
+  max-width: 520px;
+}
 .hp-elite__details-title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(20px, 2.5vw, 30px);
   font-weight: 400;
-  color: var(--hp-dark);
   margin-bottom: 20px;
   text-transform: uppercase;
 }
-
 .hp-elite__checklist {
   list-style: none;
   padding: 0;
@@ -276,27 +154,20 @@
   gap: 12px;
   margin-bottom: 14px;
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.3vw, 16px);
-  color: var(--hp-dark);
   line-height: 1.5;
 }
 .hp-elite__check-item svg {
   flex-shrink: 0;
   margin-top: 2px;
 }
-
 .hp-elite__bonus {
-  background: var(--hp-teal);
-  color: var(--hp-white);
   padding: 16px 20px;
   border-radius: 8px;
   font-family: var(--hp-font-body);
-  font-size: clamp(13px, 1.2vw, 15px);
   font-weight: 700;
   margin-bottom: 24px;
   text-align: center;
 }
-
 .hp-elite__pricing {
   display: flex;
   align-items: baseline;
@@ -306,12 +177,10 @@
   font-family: var(--hp-font-body);
 }
 .hp-elite__sale-label {
-  font-size: clamp(14px, 1.3vw, 16px);
   font-weight: 700;
   color: var(--hp-dark);
 }
 .hp-elite__sale-price {
-  font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 700;
   color: var(--hp-dark);
 }
@@ -320,7 +189,6 @@
   color: #999;
   text-decoration: line-through;
 }
-
 .hp-elite__actions {
   display: flex;
   gap: 12px;
@@ -334,7 +202,10 @@
     justify-content: center;
     align-items: flex-start;
   }
-  .hp-elite__image { flex: 0 0 auto; }
+  .hp-elite__image {
+    flex: 0 0 auto;
+    max-width: 400px;
+  }
 }
 
 /* ===================================================================
@@ -346,84 +217,60 @@
   background: var(--hp-beige);
   overflow: hidden;
 }
-
 .hp-finance__image img {
   width: 100%;
   height: 300px;
   object-fit: cover;
   display: block;
 }
-
 .hp-finance__content {
   padding: 40px 20px;
   text-align: center;
+  margin: 0 auto;
 }
-
 .hp-finance__title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(26px, 4vw, 42px);
   font-weight: 400;
-  color: var(--hp-dark);
   margin-bottom: 10px;
   text-transform: uppercase;
 }
-
 .hp-finance__sub {
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.5vw, 18px);
-  color: #555;
   margin-bottom: 40px;
 }
-
 .hp-finance__features {
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
   margin-bottom: 40px;
 }
-
 .hp-finance__feature { text-align: center; }
-
-.hp-finance__icon {
-  margin-bottom: 12px;
-}
+.hp-finance__icon { margin-bottom: 12px; }
 .hp-finance__icon img {
   width: 64px;
   height: 64px;
   display: inline-block;
 }
-
 .hp-finance__feature-title {
   font-family: var(--hp-font-label);
-  font-size: clamp(13px, 1.3vw, 16px);
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--hp-dark);
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
-
 .hp-finance__feature-desc {
   font-family: var(--hp-font-body);
-  font-size: clamp(13px, 1.2vw, 15px);
-  color: #555;
   line-height: 1.6;
   max-width: 220px;
   margin: 0 auto;
 }
-
 @media (min-width: 750px) {
   .hp-finance {
     flex-direction: row;
     min-height: 708px;
   }
-  .hp-finance__image {
-    flex: 0 0 34%;
-  }
-  .hp-finance__image img {
-    height: 100%;
-    min-height: 708px;
-  }
+  .hp-finance__image { flex: 0 0 34%; }
+  .hp-finance__image img { height: 100%; min-height: 708px; }
   .hp-finance__content {
     flex: 1;
     display: flex;
@@ -431,35 +278,26 @@
     justify-content: center;
     padding: 60px 50px;
   }
-  .hp-finance__features {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .hp-finance__features { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ===================================================================
    4. 3-STEP PROCESS
    =================================================================== */
 .hp-process {
-  background: var(--hp-teal);
   padding: clamp(40px, 6vw, 80px) 20px;
 }
-
 .hp-process__inner {
-  max-width: var(--hp-max-width);
   margin: 0 auto;
   text-align: center;
 }
-
 .hp-process__heading {
   font-family: var(--hp-font-heading);
-  font-size: clamp(24px, 3.5vw, 44px);
   font-weight: 400;
   font-style: italic;
-  color: var(--hp-white);
   text-transform: uppercase;
   margin-bottom: clamp(30px, 4vw, 50px);
 }
-
 .hp-process__steps {
   display: flex;
   flex-direction: column;
@@ -467,35 +305,23 @@
   gap: 24px;
   margin-bottom: 40px;
 }
-
 .hp-process__step { text-align: center; }
-
 .hp-process__step-label {
   display: block;
   font-family: var(--hp-font-label);
-  font-size: clamp(13px, 1.2vw, 16px);
   font-weight: 700;
-  color: var(--hp-white);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 12px;
 }
-
 .hp-process__step-title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(24px, 3.5vw, 42px);
   font-weight: 400;
-  color: var(--hp-white);
   line-height: 1.15;
   text-transform: uppercase;
 }
-
-.hp-process__arrow {
-  display: none;
-}
-.hp-process__arrow svg {
-  display: block;
-}
+.hp-process__arrow { display: none; }
+.hp-process__arrow svg { display: block; }
 
 @media (min-width: 750px) {
   .hp-process__steps {
@@ -504,10 +330,7 @@
     align-items: center;
     gap: 0;
   }
-  .hp-process__step {
-    flex: 1;
-    max-width: 320px;
-  }
+  .hp-process__step { flex: 1; max-width: 320px; }
   .hp-process__arrow {
     display: flex;
     align-items: center;
@@ -522,71 +345,50 @@
    5. NPTA ADVANTAGE
    =================================================================== */
 .hp-advantage {
-  padding: var(--hp-gutter) 20px;
+  padding: clamp(40px, 6vw, 90px) 20px;
   background: var(--hp-white);
 }
-
 .hp-advantage__inner {
-  max-width: var(--hp-max-width);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-
 .hp-advantage__image img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
   display: block;
-  max-height: 500px;
-  object-fit: cover;
 }
-
 .hp-advantage__title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(28px, 4vw, 48px);
   font-weight: 400;
-  color: var(--hp-dark);
   margin-bottom: 32px;
   text-transform: uppercase;
 }
-
-.hp-advantage__benefits {
-  margin-bottom: 32px;
-}
-
+.hp-advantage__benefits { margin-bottom: 32px; }
 .hp-advantage__benefit {
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e8e6e0;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #ddd;
 }
 .hp-advantage__benefit:last-child {
   border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-
 .hp-advantage__benefit-title {
   font-family: var(--hp-font-label);
-  font-size: clamp(14px, 1.3vw, 17px);
   font-weight: 700;
-  color: var(--hp-teal);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
-
 .hp-advantage__benefit-desc {
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.3vw, 16px);
-  color: #555;
   line-height: 1.7;
   max-width: 435px;
 }
-
 .hp-advantage__logos {
-  max-width: var(--hp-max-width);
   margin: 0 auto;
   padding: 30px 0;
   display: flex;
@@ -594,7 +396,7 @@
   justify-content: center;
   gap: clamp(24px, 5vw, 60px);
   flex-wrap: wrap;
-  border-top: 1px solid #e8e6e0;
+  border-top: 1px solid #ddd;
 }
 .hp-advantage__logo {
   height: clamp(40px, 6vw, 70px);
@@ -602,66 +404,44 @@
   object-fit: contain;
   flex-shrink: 0;
 }
-
 @media (min-width: 750px) {
   .hp-advantage__inner {
     flex-direction: row;
     align-items: flex-start;
     gap: 60px;
   }
-  .hp-advantage__image {
-    flex: 0 0 42%;
-  }
-  .hp-advantage__image img {
-    max-height: 1018px;
-    border-radius: 16px;
-  }
-  .hp-advantage__content {
-    flex: 1;
-    padding-top: 40px;
-  }
+  .hp-advantage__image { flex: 0 0 42%; }
+  .hp-advantage__content { flex: 1; padding-top: 40px; }
 }
 
 /* ===================================================================
    6. TRENDING CAREERS
    =================================================================== */
 .hp-trending {
-  padding: var(--hp-gutter) 20px;
+  padding: clamp(40px, 6vw, 90px) 20px;
   background: var(--hp-white);
 }
-
-.hp-trending__inner {
-  max-width: var(--hp-max-width);
-  margin: 0 auto;
-}
-
+.hp-trending__inner { margin: 0 auto; }
 .hp-trending__title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(28px, 4vw, 44px);
   font-weight: 400;
-  color: var(--hp-dark);
   text-align: center;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
-
 .hp-trending__sub {
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.4vw, 17px);
-  color: #555;
   text-align: center;
   margin-bottom: 40px;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .hp-trending__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
 }
-
 .hp-trending__card {
   position: relative;
   border-radius: 16px;
@@ -670,7 +450,6 @@
   display: flex;
   align-items: flex-end;
 }
-
 .hp-trending__card-img {
   position: absolute;
   inset: 0;
@@ -680,43 +459,34 @@
   display: block;
   transition: transform 0.4s ease;
 }
-.hp-trending__card:hover .hp-trending__card-img {
-  transform: scale(1.03);
-}
-
+.hp-trending__card:hover .hp-trending__card-img { transform: scale(1.03); }
 .hp-trending__card-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
   z-index: 1;
 }
-
 .hp-trending__card-content {
   position: relative;
   z-index: 2;
   padding: 24px;
   width: 100%;
 }
-
 .hp-trending__card-title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(20px, 3vw, 34px);
   font-weight: 400;
   color: var(--hp-white);
   margin-bottom: 8px;
   line-height: 1.15;
   text-transform: uppercase;
 }
-
 .hp-trending__card-desc {
   font-family: var(--hp-font-body);
-  font-size: clamp(13px, 1.2vw, 15px);
   color: rgba(255,255,255,0.9);
   line-height: 1.6;
   margin-bottom: 16px;
   max-width: 400px;
 }
-
 @media (min-width: 750px) {
   .hp-trending__grid {
     grid-template-columns: repeat(12, 1fr);
@@ -733,15 +503,10 @@
    7. TOP COURSES
    =================================================================== */
 .hp-courses {
-  padding: var(--hp-gutter) 20px;
+  padding: clamp(40px, 6vw, 90px) 20px;
   background: var(--hp-white);
 }
-
-.hp-courses__inner {
-  max-width: var(--hp-max-width);
-  margin: 0 auto;
-}
-
+.hp-courses__inner { margin: 0 auto; }
 .hp-courses__header {
   display: flex;
   flex-direction: column;
@@ -749,35 +514,23 @@
   align-items: flex-start;
   margin-bottom: 10px;
 }
-
 .hp-courses__title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(28px, 3.8vw, 42px);
   font-weight: 400;
-  color: var(--hp-dark);
   text-transform: uppercase;
 }
-
 .hp-courses__sub {
   font-family: var(--hp-font-body);
-  font-size: clamp(14px, 1.4vw, 17px);
-  color: #555;
   margin-bottom: 40px;
 }
-
 .hp-courses__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
-
-.hp-courses__card {
-  text-align: center;
-}
-
+.hp-courses__card { text-align: center; }
 .hp-courses__card-img {
   margin-bottom: 20px;
-  border-radius: 12px;
   overflow: hidden;
 }
 .hp-courses__card-img img {
@@ -788,15 +541,10 @@
   object-fit: cover;
   transition: transform 0.35s ease;
 }
-.hp-courses__card:hover .hp-courses__card-img img {
-  transform: scale(1.03);
-}
-
+.hp-courses__card:hover .hp-courses__card-img img { transform: scale(1.03); }
 .hp-courses__card-title {
   font-family: var(--hp-font-heading);
-  font-size: clamp(16px, 1.8vw, 22px);
   font-weight: 400;
-  color: var(--hp-dark);
   margin-bottom: 16px;
   min-height: 50px;
   display: flex;
@@ -804,41 +552,25 @@
   justify-content: center;
   text-transform: uppercase;
 }
-
 @media (min-width: 750px) {
   .hp-courses__header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  .hp-courses__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
+  .hp-courses__grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
 }
 
 /* ===================================================================
-   ACCESSIBILITY
+   ACCESSIBILITY & PRINT
    =================================================================== */
-.hp-btn:focus-visible {
-  outline: 3px solid var(--hp-lime);
-  outline-offset: 3px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hp-trending__card-img,
-  .hp-courses__card-img img,
-  .hp-btn .hp-btn__label {
+  .hp-courses__card-img img {
     transition: none !important;
   }
-  .hp-trending__card:hover .hp-trending__card-img {
-    transform: none;
-  }
+  .hp-trending__card:hover .hp-trending__card-img { transform: none; }
 }
-
-/* ===================================================================
-   PRINT STYLES
-   =================================================================== */
 @media print {
   .hp-hero__overlay,
   .hp-trending__card-overlay { display: none; }
