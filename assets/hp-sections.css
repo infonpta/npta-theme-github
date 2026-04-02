@@ -1,0 +1,930 @@
+/* ===================================================================
+   HP-SECTIONS.CSS — Homepage Redesign Styles
+   Mobile-first, cross-browser compatible, optimized
+   =================================================================== */
+
+/* --- Reset & Shared --- */
+.hp-hero, .hp-elite, .hp-finance, .hp-process,
+.hp-advantage, .hp-trending, .hp-discover,
+.hp-courses, .hp-testimonials {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hp-hero *, .hp-elite *, .hp-finance *, .hp-process *,
+.hp-advantage *, .hp-trending *, .hp-discover *,
+.hp-courses *, .hp-testimonials * {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Typography --- */
+:root {
+  --hp-font-heading: var(--font-poppins700, 'Poppins', sans-serif);
+  --hp-font-body: var(--font-poppins400, 'Poppins', sans-serif);
+  --hp-font-accent: var(--font-proximamedium, 'Proxima Nova', sans-serif);
+  --hp-teal: #0f828c;
+  --hp-teal-dark: #0a6b73;
+  --hp-lime: #C1FF72;
+  --hp-dark: #141414;
+  --hp-white: #ffffff;
+  --hp-beige: #F1EFE8;
+  --hp-gray: #f2f0e9;
+  --hp-max-width: 1300px;
+  --hp-gutter: clamp(20px, 4vw, 90px);
+}
+
+/* --- Buttons --- */
+.hp-btn {
+  display: inline-block;
+  font-family: var(--hp-font-accent);
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 32px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.4;
+}
+.hp-btn:hover { transform: translateY(-1px); }
+.hp-btn:active { transform: translateY(0); }
+
+.hp-btn--primary {
+  background-color: var(--hp-teal);
+  color: var(--hp-white);
+  border-color: var(--hp-teal);
+}
+.hp-btn--primary:hover {
+  background-color: var(--hp-teal-dark);
+  border-color: var(--hp-teal-dark);
+  color: var(--hp-white);
+}
+
+.hp-btn--secondary {
+  background-color: var(--hp-lime);
+  color: var(--hp-dark);
+  border-color: var(--hp-lime);
+}
+.hp-btn--secondary:hover {
+  background-color: #b0f060;
+  border-color: #b0f060;
+  color: var(--hp-dark);
+}
+
+.hp-btn--outline {
+  background-color: transparent;
+  color: var(--hp-teal);
+  border-color: var(--hp-teal);
+}
+.hp-btn--outline:hover {
+  background-color: var(--hp-teal);
+  color: var(--hp-white);
+}
+
+.hp-btn--outline-dark {
+  background-color: transparent;
+  color: var(--hp-dark);
+  border-color: var(--hp-dark);
+}
+.hp-btn--outline-dark:hover {
+  background-color: var(--hp-dark);
+  color: var(--hp-white);
+}
+
+.hp-btn--sm {
+  padding: 10px 24px;
+  font-size: 13px;
+}
+
+/* ===================================================================
+   1. HERO BANNER
+   =================================================================== */
+.hp-hero {
+  position: relative;
+  width: 100%;
+  min-height: 60dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hp-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hp-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hp-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.hp-hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 860px;
+}
+
+.hp-hero__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(28px, 5.5vw, 65px);
+  font-weight: 700;
+  color: var(--hp-white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.hp-hero__sub {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.8vw, 20px);
+  color: var(--hp-white);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  opacity: 0.95;
+}
+
+@media (min-width: 750px) {
+  .hp-hero { min-height: 670px; }
+  .hp-hero__content { padding: 80px 40px; }
+}
+
+/* ===================================================================
+   2. ELITE BUNDLE
+   =================================================================== */
+.hp-elite {
+  padding: var(--hp-gutter) 20px;
+  background: var(--hp-white);
+}
+
+.hp-elite__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hp-elite__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  margin-bottom: 8px;
+}
+
+.hp-elite__subtitle {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.hp-elite__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  text-align: left;
+}
+
+.hp-elite__image img {
+  width: 100%;
+  max-width: 321px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+.hp-elite__details { max-width: 520px; }
+
+.hp-elite__details-title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  margin-bottom: 20px;
+}
+
+.hp-elite__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.hp-elite__check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.3vw, 16px);
+  color: var(--hp-dark);
+  line-height: 1.5;
+}
+.hp-elite__check-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hp-elite__bonus {
+  background: var(--hp-teal);
+  color: var(--hp-white);
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-family: var(--hp-font-accent);
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.hp-elite__pricing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-family: var(--hp-font-accent);
+}
+.hp-elite__sale-label {
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 700;
+  color: var(--hp-dark);
+}
+.hp-elite__sale-price {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  color: var(--hp-teal);
+}
+.hp-elite__reg-price {
+  font-size: clamp(14px, 1.3vw, 16px);
+  color: #999;
+  text-decoration: line-through;
+}
+
+.hp-elite__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 750px) {
+  .hp-elite__grid {
+    flex-direction: row;
+    gap: 48px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .hp-elite__image { flex: 0 0 auto; }
+}
+
+/* ===================================================================
+   3. FINANCE SECTION
+   =================================================================== */
+.hp-finance {
+  display: flex;
+  flex-direction: column;
+  background: var(--hp-beige);
+  overflow: hidden;
+}
+
+.hp-finance__image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.hp-finance__content {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.hp-finance__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  margin-bottom: 10px;
+}
+
+.hp-finance__sub {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.hp-finance__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.hp-finance__feature { text-align: center; }
+
+.hp-finance__icon {
+  margin-bottom: 12px;
+}
+.hp-finance__icon img {
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+}
+
+.hp-finance__feature-title {
+  font-family: var(--hp-font-accent);
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--hp-dark);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.hp-finance__feature-desc {
+  font-family: var(--hp-font-body);
+  font-size: clamp(13px, 1.2vw, 15px);
+  color: #555;
+  line-height: 1.6;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+@media (min-width: 750px) {
+  .hp-finance {
+    flex-direction: row;
+    min-height: 708px;
+  }
+  .hp-finance__image {
+    flex: 0 0 34%;
+  }
+  .hp-finance__image img {
+    height: 100%;
+    min-height: 708px;
+  }
+  .hp-finance__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px;
+  }
+  .hp-finance__features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===================================================================
+   4. 3-STEP PROCESS
+   =================================================================== */
+.hp-process {
+  background: var(--hp-teal);
+  padding: clamp(40px, 6vw, 80px) 20px;
+}
+
+.hp-process__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hp-process__eyebrow {
+  font-family: var(--hp-font-body);
+  font-size: clamp(13px, 1.2vw, 16px);
+  color: var(--hp-white);
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
+
+.hp-process__steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.hp-process__step { text-align: center; }
+
+.hp-process__step-label {
+  display: block;
+  font-family: var(--hp-font-accent);
+  font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 600;
+  color: var(--hp-lime);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hp-process__step-title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(22px, 3.5vw, 38px);
+  font-weight: 700;
+  color: var(--hp-white);
+  line-height: 1.25;
+}
+
+.hp-process__arrow {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .hp-process__steps {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+  }
+  .hp-process__step {
+    flex: 1;
+    max-width: 280px;
+  }
+  .hp-process__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0 8px;
+  }
+}
+
+/* ===================================================================
+   5. NPTA ADVANTAGE
+   =================================================================== */
+.hp-advantage {
+  padding: var(--hp-gutter) 20px;
+  background: var(--hp-white);
+}
+
+.hp-advantage__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hp-advantage__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.hp-advantage__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  margin-bottom: 32px;
+}
+
+.hp-advantage__benefits {
+  margin-bottom: 32px;
+}
+
+.hp-advantage__benefit {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e8e6e0;
+}
+.hp-advantage__benefit:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.hp-advantage__benefit-title {
+  font-family: var(--hp-font-accent);
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 700;
+  color: var(--hp-teal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.hp-advantage__benefit-desc {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.3vw, 16px);
+  color: #555;
+  line-height: 1.7;
+  max-width: 435px;
+}
+
+.hp-advantage__logos {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 5vw, 60px);
+  flex-wrap: wrap;
+  border-top: 1px solid #e8e6e0;
+}
+.hp-advantage__logo {
+  height: clamp(40px, 6vw, 70px);
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (min-width: 750px) {
+  .hp-advantage__inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 60px;
+  }
+  .hp-advantage__image {
+    flex: 0 0 42%;
+  }
+  .hp-advantage__image img {
+    max-height: 1018px;
+    border-radius: 16px;
+  }
+  .hp-advantage__content {
+    flex: 1;
+    padding-top: 40px;
+  }
+}
+
+/* ===================================================================
+   6. TRENDING CAREERS
+   =================================================================== */
+.hp-trending {
+  padding: var(--hp-gutter) 20px;
+  background: var(--hp-white);
+}
+
+.hp-trending__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+}
+
+.hp-trending__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.hp-trending__sub {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.4vw, 17px);
+  color: #555;
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hp-trending__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.hp-trending__card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hp-trending__card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.hp-trending__card:hover .hp-trending__card-img {
+  transform: scale(1.03);
+}
+
+.hp-trending__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.hp-trending__card-content {
+  position: relative;
+  z-index: 2;
+  padding: 24px;
+  width: 100%;
+}
+
+.hp-trending__card-title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--hp-white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.hp-trending__card-desc {
+  font-family: var(--hp-font-body);
+  font-size: clamp(13px, 1.2vw, 15px);
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 400px;
+}
+
+@media (min-width: 750px) {
+  .hp-trending__grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+  /* Row 1: large (7 cols) + small (5 cols) */
+  .hp-trending__card:nth-child(1) { grid-column: span 7; min-height: 406px; }
+  .hp-trending__card:nth-child(2) { grid-column: span 5; min-height: 406px; }
+  /* Row 2: small (5 cols) + large (7 cols) */
+  .hp-trending__card:nth-child(3) { grid-column: span 5; min-height: 386px; }
+  .hp-trending__card:nth-child(4) { grid-column: span 7; min-height: 386px; }
+}
+
+/* ===================================================================
+   7. DISCOVER RIGHT PATH
+   =================================================================== */
+.hp-discover {
+  padding: var(--hp-gutter) 20px;
+  background: var(--hp-gray);
+}
+
+.hp-discover__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.hp-discover__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.hp-discover__content { text-align: center; }
+
+.hp-discover__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(24px, 3.8vw, 38px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  margin-bottom: 12px;
+}
+
+.hp-discover__eyebrow {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.4vw, 17px);
+  color: #777;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.hp-discover__desc {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.3vw, 16px);
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hp-discover__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 750px) {
+  .hp-discover__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+  .hp-discover__image {
+    flex: 0 0 42%;
+  }
+  .hp-discover__content {
+    flex: 1;
+    text-align: left;
+  }
+  .hp-discover__desc {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .hp-discover__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ===================================================================
+   8. TOP COURSES
+   =================================================================== */
+.hp-courses {
+  padding: var(--hp-gutter) 20px;
+  background: var(--hp-white);
+}
+
+.hp-courses__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+}
+
+.hp-courses__header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.hp-courses__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(26px, 3.8vw, 38px);
+  font-weight: 700;
+  color: var(--hp-dark);
+}
+
+.hp-courses__sub {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.4vw, 17px);
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.hp-courses__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.hp-courses__card {
+  text-align: center;
+}
+
+.hp-courses__card-img {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.hp-courses__card-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 314 / 375;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.hp-courses__card:hover .hp-courses__card-img img {
+  transform: scale(1.03);
+}
+
+.hp-courses__card-title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 700;
+  color: var(--hp-dark);
+  margin-bottom: 16px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 750px) {
+  .hp-courses__header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hp-courses__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ===================================================================
+   9. TESTIMONIALS / LEARN FROM THE BEST
+   =================================================================== */
+.hp-testimonials {
+  padding: clamp(50px, 7vw, 100px) 20px;
+  background: var(--hp-teal);
+  text-align: center;
+}
+
+.hp-testimonials__inner {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+}
+
+.hp-testimonials__title {
+  font-family: var(--hp-font-heading);
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--hp-white);
+  margin-bottom: 16px;
+}
+
+.hp-testimonials__eyebrow {
+  font-family: var(--hp-font-body);
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--hp-lime);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hp-testimonials__desc {
+  font-family: var(--hp-font-body);
+  font-size: clamp(14px, 1.4vw, 17px);
+  color: rgba(255,255,255,0.9);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto 40px;
+}
+
+.hp-testimonials__image {
+  margin-bottom: 40px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.hp-testimonials__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+/* ===================================================================
+   ACCESSIBILITY
+   =================================================================== */
+.hp-btn:focus-visible,
+.hp-trending__card a:focus-visible {
+  outline: 3px solid var(--hp-lime);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-trending__card-img,
+  .hp-courses__card-img img,
+  .hp-btn {
+    transition: none !important;
+  }
+  .hp-trending__card:hover .hp-trending__card-img {
+    transform: none;
+  }
+}
+
+/* ===================================================================
+   PRINT STYLES
+   =================================================================== */
+@media print {
+  .hp-hero__overlay,
+  .hp-trending__card-overlay { display: none; }
+  .hp-hero, .hp-process, .hp-testimonials { color: #000; background: #fff !important; }
+}
