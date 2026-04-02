@@ -34,7 +34,7 @@
       "settings": {
         "heading": "Don't Let Your Finances Stop You.",
         "subheading": "Learn now, Pay later with Elective.",
-        "button_text": "APPLY NOW",
+        "button_text": "GET APPROVED IN SECONDS",
         "button_link": ""
       },
       "blocks": {
@@ -47,13 +47,14 @@
     "hp_process": {
       "type": "hp-process",
       "settings": {
-        "button_text": "BECOME A PERSONAL TRAINER TODAY",
+        "heading": "Three Steps To A Career You'll Actually Love",
+        "button_text": "START MY CAREER IN FITNESS",
         "button_link": ""
       },
       "blocks": {
-        "step_1": { "type": "step", "settings": { "title": "Get Certified" } },
-        "step_2": { "type": "step", "settings": { "title": "Get Hands-On Training" } },
-        "step_3": { "type": "step", "settings": { "title": "Get Insured And Employed" } }
+        "step_1": { "type": "step", "settings": { "title": "Get Certified. Get Credible." } },
+        "step_2": { "type": "step", "settings": { "title": "Train Real People. Build Real Confidence." } },
+        "step_3": { "type": "step", "settings": { "title": "Get Mentored, Get Hired." } }
       },
       "block_order": ["step_1", "step_2", "step_3"]
     },
@@ -87,15 +88,27 @@
       "block_order": ["career_1", "career_2", "career_3", "career_4"]
     },
     "hp_discover": {
-      "type": "hp-discover",
+      "type": "quiz-hero-popup",
       "settings": {
+        "max_width": 1200,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "section_bg": "#f2f2e9",
+        "heading_color": "#01241e",
+        "text_color": "#01241e",
+        "eyebrow": "",
         "heading": "Discover The Right Path For You",
-        "eyebrow": "Not sure where to begin?",
-        "description": "Take our quick quiz to find the best starting point for your goals, interests, and experience—we'll guide you to the path that's right for you.",
-        "quiz_text": "TAKE THE QUIZ",
-        "quiz_link": "",
-        "advisor_text": "TALK TO A CAREER ADVISOR",
-        "advisor_link": ""
+        "description": "<p>Not sure where to begin?</p><p>Take our quick quiz to find the best starting point for your goals, interests, and experience\u2014we'll guide you to the path that's right for you.</p>",
+        "primary_btn_label": "TAKE THE QUIZ",
+        "primary_btn_bg": "#0f828c",
+        "primary_btn_text": "#ffffff",
+        "secondary_btn_label": "TALK TO A CAREER ADVISOR",
+        "secondary_btn_bg": "#ffffff",
+        "secondary_btn_text": "#01241e",
+        "accent_color": "#0f828c",
+        "correct_color": "#22c55e",
+        "wrong_color": "#ef4444",
+        "modal_bg": "#ffffff"
       }
     },
     "hp_top_courses": {
@@ -112,16 +125,6 @@
         "course_3": { "type": "course", "settings": { "title": "Certified Wellness Coach (CWC)" } }
       },
       "block_order": ["course_1", "course_2", "course_3"]
-    },
-    "hp_testimonials": {
-      "type": "hp-testimonials",
-      "settings": {
-        "heading": "Learn From The Best. Be The Best.",
-        "subtitle": "Real Stories. Real Results.",
-        "description": "See how NASM-certified trainers turned passion into thriving careers. With the right certification and support, you'll gain the skills, confidence, and opportunities to shape your own path.",
-        "button_text": "LEARN MORE",
-        "button_link": ""
-      }
     }
   },
   "order": [
@@ -132,7 +135,6 @@
     "hp_advantage",
     "hp_trending",
     "hp_discover",
-    "hp_top_courses",
-    "hp_testimonials"
+    "hp_top_courses"
   ]
 }

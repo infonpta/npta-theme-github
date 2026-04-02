@@ -38,23 +38,27 @@
     .qhp .qhp__content{ max-width: 560px; }
 
     .qhp .qhp__eyebrow{
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      opacity: .85;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: .02em;
+      text-transform: none;
+      opacity: .75;
       margin: 0 0 10px;
     }
 
     .qhp .qhp__heading{
+      font-family: 'Anton', sans-serif;
       font-size: clamp(28px, 3.3vw, 44px);
       line-height: 1.05;
       margin: 0 0 14px;
       color: var(--qhp-heading);
-      font-weight: 800;
+      font-weight: 400;
       text-transform: uppercase;
     }
 
     .qhp .qhp__desc{
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 16px;
       line-height: 1.55;
       margin: 0 0 22px;
@@ -71,25 +75,41 @@
 
     .qhp .qhp__btn{
       appearance: none;
-      border: 0;
-      border-radius: 10px;
-      padding: 12px 18px;
-      font-weight: 800;
-      letter-spacing: .02em;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: transform .12s ease, opacity .12s ease;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
+      height: 49px;
+      overflow: hidden;
+      position: relative;
     }
+    .qhp .qhp__btn .qhp__btn-label{
+      display: block;
+      margin: 0 30px;
+      height: 100%;
+      position: relative;
+      top: -100%;
+      transition: top 0.3s ease;
+      line-height: 49px;
+      white-space: nowrap;
+    }
+    .qhp .qhp__btn:hover .qhp__btn-label{ top: 0%; }
     .qhp .qhp__btn:active{ transform: translateY(1px); }
-    .qhp .qhp__btn:hover{ opacity: .92; }
     .qhp .qhp__btn[disabled]{ opacity: .6; cursor: not-allowed; }
 
-    .qhp .qhp__btn--primary{ background: var(--qhp-primary-bg); color: var(--qhp-primary-text); }
-    .qhp .qhp__btn--secondary{ background: var(--qhp-secondary-bg); color: var(--qhp-secondary-text); }
+    .qhp .qhp__btn--primary{ background: var(--qhp-primary-bg); border-color: var(--qhp-primary-bg); }
+    .qhp .qhp__btn--primary .qhp__btn-label{ color: var(--qhp-primary-text); }
+    .qhp .qhp__btn--secondary{ background: transparent; border-color: var(--qhp-secondary-text); }
+    .qhp .qhp__btn--secondary .qhp__btn-label{ color: var(--qhp-secondary-text); }
 
     .qhp .qhp__advisor{ margin-top: 10px; font-size: 15px; opacity: .95; }
 
@@ -585,12 +605,14 @@
             data-qhp-open
             {% if section.blocks.size == 0 %}disabled{% endif %}
           >
-            {{ section.settings.primary_btn_label }}
+            <span class="qhp__btn-label">{{ section.settings.primary_btn_label }}</span>
+            <span class="qhp__btn-label">{{ section.settings.primary_btn_label }}</span>
           </button>
 
           {% if section.settings.secondary_btn_label != blank and section.settings.secondary_btn_url != blank %}
             <a class="qhp__btn qhp__btn--secondary" href="{{ section.settings.secondary_btn_url }}">
-              {{ section.settings.secondary_btn_label }}
+              <span class="qhp__btn-label">{{ section.settings.secondary_btn_label }}</span>
+              <span class="qhp__btn-label">{{ section.settings.secondary_btn_label }}</span>
             </a>
           {% endif %}
         </div>

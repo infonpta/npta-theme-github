@@ -32,8 +32,9 @@
       </div>
 
       {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
-        <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--secondary">
-          {{ section.settings.button_text }}
+        <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--teal">
+          <span class="hp-btn__label">{{ section.settings.button_text }}</span>
+          <span class="hp-btn__label">{{ section.settings.button_text }}</span>
         </a>
       {%- endif -%}
     </div>

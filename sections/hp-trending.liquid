@@ -27,7 +27,10 @@
             <h3 class="hp-trending__card-title">{{ block.settings.title }}</h3>
             <p class="hp-trending__card-desc">{{ block.settings.description }}</p>
             {%- if block.settings.button_link != blank -%}
-              <a href="{{ block.settings.button_link }}" class="hp-btn hp-btn--primary hp-btn--sm">ADD TO CART</a>
+              <a href="{{ block.settings.button_link }}" class="hp-btn hp-btn--primary hp-btn--sm">
+                <span class="hp-btn__label">ADD TO CART</span>
+                <span class="hp-btn__label">ADD TO CART</span>
+              </a>
             {%- endif -%}
           </div>
         </article>
