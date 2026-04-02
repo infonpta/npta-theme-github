@@ -1,0 +1,98 @@
+{%- assign sid = section.id -%}
+{{ 'hp-sections.css' | asset_url | stylesheet_tag }}
+
+<section id="hp-elite-{{ sid }}" class="hp-elite">
+  <div class="hp-elite__inner">
+    <h2 class="hp-elite__title">{{ section.settings.heading }}</h2>
+    <p class="hp-elite__subtitle">{{ section.settings.subtitle }}</p>
+
+    <div class="hp-elite__grid">
+      <div class="hp-elite__image">
+        {%- if section.settings.product_image != blank -%}
+          <img
+            src="{{ section.settings.product_image | image_url: width: 640 }}"
+            srcset="{{ section.settings.product_image | image_url: width: 400 }} 400w,
+                    {{ section.settings.product_image | image_url: width: 640 }} 640w"
+            sizes="(max-width: 749px) 90vw, 321px"
+            alt="{{ section.settings.heading | escape }}"
+            loading="lazy"
+            width="321"
+            height="381">
+        {%- endif -%}
+      </div>
+
+      <div class="hp-elite__details">
+        <h3 class="hp-elite__details-title">{{ section.settings.details_heading }}</h3>
+        <ul class="hp-elite__checklist">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'checklist_item' -%}
+              <li class="hp-elite__check-item" {{ block.shopify_attributes }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="12" fill="#0f828c"/>
+                  <path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+
+        {%- if section.settings.bonus_text != blank -%}
+          <div class="hp-elite__bonus">
+            {{ section.settings.bonus_text }}
+          </div>
+        {%- endif -%}
+
+        <div class="hp-elite__pricing">
+          <span class="hp-elite__sale-label">SALE PRICE:</span>
+          <span class="hp-elite__sale-price">{{ section.settings.sale_price }}</span>
+          <span class="hp-elite__reg-price">{{ section.settings.regular_price }}</span>
+        </div>
+
+        <div class="hp-elite__actions">
+          {%- if section.settings.cart_link != blank -%}
+            <a href="{{ section.settings.cart_link }}" class="hp-btn hp-btn--primary">ADD TO CART</a>
+          {%- endif -%}
+          {%- if section.settings.lnpl_link != blank -%}
+            <a href="{{ section.settings.lnpl_link }}" class="hp-btn hp-btn--outline">LEARN NOW, PAY LATER</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HP Elite Bundle",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Elite Bundle" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "NASM certified. NPTA™ trained. Career ready." },
+    { "type": "image_picker", "id": "product_image", "label": "Product Image" },
+    { "type": "text", "id": "details_heading", "label": "Details Heading", "default": "What's included" },
+    { "type": "text", "id": "bonus_text", "label": "Bonus Text", "default": "FREE GLP-1 CERTIFICATION - Understanding Weight Loss Medications" },
+    { "type": "text", "id": "sale_price", "label": "Sale Price", "default": "$2,497" },
+    { "type": "text", "id": "regular_price", "label": "Regular Price", "default": "$4,899" },
+    { "type": "url", "id": "cart_link", "label": "Add to Cart Link" },
+    { "type": "url", "id": "lnpl_link", "label": "Learn Now Pay Later Link" }
+  ],
+  "blocks": [
+    {
+      "type": "checklist_item",
+      "name": "Checklist Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Item Text", "default": "NASM CPT - Certified Personal Trainer" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "HP Elite Bundle",
+    "blocks": [
+      { "type": "checklist_item", "settings": { "text": "NASM CPT - Certified Personal Trainer" } },
+      { "type": "checklist_item", "settings": { "text": "NASM CNC - Certified Nutrition Coach" } },
+      { "type": "checklist_item", "settings": { "text": "NASM PES - Performance Exercise Specialist" } },
+      { "type": "checklist_item", "settings": { "text": "NASM CES - Corrective Exercise Specialist" } }
+    ]
+  }]
+}
+{% endschema %}

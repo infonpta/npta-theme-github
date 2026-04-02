@@ -1,0 +1,60 @@
+{%- assign sid = section.id -%}
+{{ 'hp-sections.css' | asset_url | stylesheet_tag }}
+
+<section id="hp-process-{{ sid }}" class="hp-process">
+  <div class="hp-process__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="hp-process__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    <div class="hp-process__steps">
+      {%- for block in section.blocks -%}
+        <div class="hp-process__step" {{ block.shopify_attributes }}>
+          <span class="hp-process__step-label">STEP {{ forloop.index }}</span>
+          <h3 class="hp-process__step-title">{{ block.settings.title }}</h3>
+        </div>
+        {%- unless forloop.last -%}
+          <div class="hp-process__arrow" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <path d="M8 5l7 7-7 7" stroke="#C1FF72" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+      <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--secondary">
+        {{ section.settings.button_text }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HP 3-Step Process",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text" },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "BECOME A PERSONAL TRAINER TODAY" },
+    { "type": "url", "id": "button_link", "label": "Button Link" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Step Title", "default": "Get Certified" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "HP 3-Step Process",
+    "blocks": [
+      { "type": "step", "settings": { "title": "Get Certified" } },
+      { "type": "step", "settings": { "title": "Get Hands-On Training" } },
+      { "type": "step", "settings": { "title": "Get Insured And Employed" } }
+    ]
+  }]
+}
+{% endschema %}

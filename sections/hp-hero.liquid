@@ -1,0 +1,50 @@
+{%- assign sid = section.id -%}
+{{ 'hp-sections.css' | asset_url | stylesheet_tag }}
+
+<section id="hp-hero-{{ sid }}" class="hp-hero">
+  {%- if section.settings.background_image != blank -%}
+    <picture class="hp-hero__bg">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2400 }}"
+        srcset="{{ section.settings.background_image | image_url: width: 800 }} 800w,
+                {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
+                {{ section.settings.background_image | image_url: width: 1800 }} 1800w,
+                {{ section.settings.background_image | image_url: width: 2400 }} 2400w"
+        sizes="100vw"
+        alt="{{ section.settings.headline | escape }}"
+        loading="eager"
+        fetchpriority="high"
+        width="1400"
+        height="670">
+    </picture>
+  {%- endif -%}
+  <div class="hp-hero__overlay"></div>
+
+  <div class="hp-hero__content">
+    {%- if section.settings.headline != blank -%}
+      <h1 class="hp-hero__title">{{ section.settings.headline }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="hp-hero__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+      <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--primary">
+        {{ section.settings.button_text }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HP Hero Banner",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Background Image" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Spring Forward Your Career" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Earn your NASM certification through NPTA™ and gain the hands-on training, job placement support, and career-ready experience that you need." },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "START TODAY" },
+    { "type": "url", "id": "button_link", "label": "Button Link" }
+  ],
+  "presets": [{ "name": "HP Hero Banner" }]
+}
+{% endschema %}

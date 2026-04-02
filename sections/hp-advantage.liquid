@@ -1,0 +1,95 @@
+{%- assign sid = section.id -%}
+{{ 'hp-sections.css' | asset_url | stylesheet_tag }}
+
+<section id="hp-advantage-{{ sid }}" class="hp-advantage">
+  <div class="hp-advantage__inner">
+    <div class="hp-advantage__image">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 1188 }}"
+          srcset="{{ section.settings.image | image_url: width: 600 }} 600w,
+                  {{ section.settings.image | image_url: width: 1188 }} 1188w"
+          sizes="(max-width: 749px) 100vw, 42%"
+          alt="{{ section.settings.heading | escape }}"
+          loading="lazy"
+          width="594"
+          height="1018">
+      {%- endif -%}
+    </div>
+
+    <div class="hp-advantage__content">
+      <h2 class="hp-advantage__title">{{ section.settings.heading }}</h2>
+
+      <div class="hp-advantage__benefits">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit' -%}
+            <div class="hp-advantage__benefit" {{ block.shopify_attributes }}>
+              <h4 class="hp-advantage__benefit-title">{{ block.settings.title }}</h4>
+              <p class="hp-advantage__benefit-desc">{{ block.settings.description }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+        <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--secondary">
+          {{ section.settings.button_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} Partner logos {%- endcomment -%}
+  <div class="hp-advantage__logos">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'logo' and block.settings.logo != blank -%}
+        <img
+          src="{{ block.settings.logo | image_url: width: 272 }}"
+          alt="Partner logo"
+          loading="lazy"
+          width="136"
+          height="136"
+          class="hp-advantage__logo"
+          {{ block.shopify_attributes }}>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HP NPTA Advantage",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Side Image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The NPTA Advantage" },
+    { "type": "text", "id": "button_text", "label": "CTA Button Text", "default": "TALK TO A CAREER ADVISOR TODAY" },
+    { "type": "url", "id": "button_link", "label": "CTA Button Link" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "OFFICIAL CANADIAN NASM PARTNER" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Earn your NASM certification through an official Canadian partner, combining global standards with localized support and guidance." }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Partner Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo", "label": "Logo Image" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "HP NPTA Advantage",
+    "blocks": [
+      { "type": "benefit", "settings": { "title": "OFFICIAL CANADIAN NASM PARTNER", "description": "Earn your NASM certification through an official Canadian partner, combining global standards with localized support and guidance." } },
+      { "type": "benefit", "settings": { "title": "PRACTICAL REAL-WORLD TRAINING", "description": "Build confidence beyond theory with an apprenticeship-based approach grounded in real coaching experience and the NASM OPT™ Model." } },
+      { "type": "benefit", "settings": { "title": "FLEXIBLE, SELF-PACED LEARNING", "description": "Study on your own schedule with 100% online programming designed to fit around your life and commitments." } },
+      { "type": "benefit", "settings": { "title": "CAREER-READY, WORLDWIDE", "description": "Graduate with a globally respected certification plus the local insight, mentorship, and support needed to enter the global fitness industry with clarity." } }
+    ]
+  }]
+}
+{% endschema %}
