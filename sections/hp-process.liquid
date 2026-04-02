@@ -3,8 +3,8 @@
 
 <section id="hp-process-{{ sid }}" class="hp-process">
   <div class="hp-process__inner">
-    {%- if section.settings.eyebrow != blank -%}
-      <p class="hp-process__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hp-process__heading">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
     <div class="hp-process__steps">
@@ -15,8 +15,8 @@
         </div>
         {%- unless forloop.last -%}
           <div class="hp-process__arrow" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path d="M8 5l7 7-7 7" stroke="#C1FF72" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="66" viewBox="0 0 43 66" fill="none">
+              <path d="M0 65.3333V0L42.1667 32.6667L0 65.3333Z" fill="#01241E"/>
             </svg>
           </div>
         {%- endunless -%}
@@ -25,7 +25,8 @@
 
     {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
       <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--secondary">
-        {{ section.settings.button_text }}
+        <span class="hp-btn__label">{{ section.settings.button_text }}</span>
+        <span class="hp-btn__label">{{ section.settings.button_text }}</span>
       </a>
     {%- endif -%}
   </div>
@@ -35,8 +36,8 @@
 {
   "name": "HP 3-Step Process",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text" },
-    { "type": "text", "id": "button_text", "label": "Button Text", "default": "BECOME A PERSONAL TRAINER TODAY" },
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "Three Steps To A Career You'll Actually Love" },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "START MY CAREER IN FITNESS" },
     { "type": "url", "id": "button_link", "label": "Button Link" }
   ],
   "blocks": [
@@ -44,16 +45,16 @@
       "type": "step",
       "name": "Step",
       "settings": [
-        { "type": "text", "id": "title", "label": "Step Title", "default": "Get Certified" }
+        { "type": "text", "id": "title", "label": "Step Title", "default": "Get Certified. Get Credible." }
       ]
     }
   ],
   "presets": [{
     "name": "HP 3-Step Process",
     "blocks": [
-      { "type": "step", "settings": { "title": "Get Certified" } },
-      { "type": "step", "settings": { "title": "Get Hands-On Training" } },
-      { "type": "step", "settings": { "title": "Get Insured And Employed" } }
+      { "type": "step", "settings": { "title": "Get Certified. Get Credible." } },
+      { "type": "step", "settings": { "title": "Train Real People. Build Real Confidence." } },
+      { "type": "step", "settings": { "title": "Get Mentored, Get Hired." } }
     ]
   }]
 }

@@ -51,10 +51,16 @@
 
         <div class="hp-elite__actions">
           {%- if section.settings.cart_link != blank -%}
-            <a href="{{ section.settings.cart_link }}" class="hp-btn hp-btn--primary">ADD TO CART</a>
+            <a href="{{ section.settings.cart_link }}" class="hp-btn hp-btn--primary">
+              <span class="hp-btn__label">ADD TO CART</span>
+              <span class="hp-btn__label">ADD TO CART</span>
+            </a>
           {%- endif -%}
           {%- if section.settings.lnpl_link != blank -%}
-            <a href="{{ section.settings.lnpl_link }}" class="hp-btn hp-btn--outline">LEARN NOW, PAY LATER</a>
+            <a href="{{ section.settings.lnpl_link }}" class="hp-btn hp-btn--outline-dark">
+              <span class="hp-btn__label">LEARN NOW, PAY LATER</span>
+              <span class="hp-btn__label">LEARN NOW, PAY LATER</span>
+            </a>
           {%- endif -%}
         </div>
       </div>
