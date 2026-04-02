@@ -2,31 +2,31 @@
 {{ 'hp-sections.css' | asset_url | stylesheet_tag }}
 
 <section id="hp-elite-{{ sid }}" class="hp-elite">
-  <div class="hp-elite__inner">
-    <h2 class="hp-elite__title">{{ section.settings.heading }}</h2>
-    <p class="hp-elite__subtitle">{{ section.settings.subtitle }}</p>
+  <div class="hp-elite__inner" style="max-width: {{ section.settings.container_width }}px;">
+    <h2 class="hp-elite__title" style="font-size: {{ section.settings.title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.heading }}</h2>
+    <p class="hp-elite__subtitle" style="font-size: {{ section.settings.body_size }}; color: {{ section.settings.body_color }};">{{ section.settings.subtitle }}</p>
 
     <div class="hp-elite__grid">
       <div class="hp-elite__image">
         {%- if section.settings.product_image != blank -%}
           <img
-            src="{{ section.settings.product_image | image_url: width: 640 }}"
-            srcset="{{ section.settings.product_image | image_url: width: 400 }} 400w,
-                    {{ section.settings.product_image | image_url: width: 640 }} 640w"
-            sizes="(max-width: 749px) 90vw, 321px"
+            src="{{ section.settings.product_image | image_url: width: 800 }}"
+            srcset="{{ section.settings.product_image | image_url: width: 500 }} 500w,
+                    {{ section.settings.product_image | image_url: width: 800 }} 800w"
+            sizes="(max-width: 749px) 90vw, 400px"
             alt="{{ section.settings.heading | escape }}"
             loading="lazy"
-            width="321"
-            height="381">
+            width="400"
+            height="475">
         {%- endif -%}
       </div>
 
       <div class="hp-elite__details">
-        <h3 class="hp-elite__details-title">{{ section.settings.details_heading }}</h3>
+        <h3 class="hp-elite__details-title" style="font-size: {{ section.settings.details_title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.details_heading }}</h3>
         <ul class="hp-elite__checklist">
           {%- for block in section.blocks -%}
             {%- if block.type == 'checklist_item' -%}
-              <li class="hp-elite__check-item" {{ block.shopify_attributes }}>
+              <li class="hp-elite__check-item" style="font-size: {{ section.settings.body_size }}; color: {{ section.settings.body_color }};" {{ block.shopify_attributes }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="12" r="12" fill="#0f828c"/>
                   <path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,28 +38,28 @@
         </ul>
 
         {%- if section.settings.bonus_text != blank -%}
-          <div class="hp-elite__bonus">
+          <div class="hp-elite__bonus" style="background-color: {{ section.settings.bonus_bg_color }}; color: {{ section.settings.bonus_text_color }};">
             {{ section.settings.bonus_text }}
           </div>
         {%- endif -%}
 
         <div class="hp-elite__pricing">
-          <span class="hp-elite__sale-label">SALE PRICE:</span>
-          <span class="hp-elite__sale-price">{{ section.settings.sale_price }}</span>
+          <span class="hp-elite__sale-label" style="font-size: {{ section.settings.body_size }};">SALE PRICE:</span>
+          <span class="hp-elite__sale-price" style="font-size: {{ section.settings.price_size }};">{{ section.settings.sale_price }}</span>
           <span class="hp-elite__reg-price">{{ section.settings.regular_price }}</span>
         </div>
 
         <div class="hp-elite__actions">
           {%- if section.settings.cart_link != blank -%}
-            <a href="{{ section.settings.cart_link }}" class="hp-btn hp-btn--primary">
-              <span class="hp-btn__label">ADD TO CART</span>
-              <span class="hp-btn__label">ADD TO CART</span>
+            <a href="{{ section.settings.cart_link }}" class="btn button-yg" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+              <span class="btn-label-down">ADD TO CART</span>
+              <span class="btn-label-down">ADD TO CART</span>
             </a>
           {%- endif -%}
           {%- if section.settings.lnpl_link != blank -%}
-            <a href="{{ section.settings.lnpl_link }}" class="hp-btn hp-btn--outline-dark">
-              <span class="hp-btn__label">LEARN NOW, PAY LATER</span>
-              <span class="hp-btn__label">LEARN NOW, PAY LATER</span>
+            <a href="{{ section.settings.lnpl_link }}" class="btn hp-btn-outline" style="font-size: {{ section.settings.btn_font_size }};">
+              <span class="btn-label-down">LEARN NOW, PAY LATER</span>
+              <span class="btn-label-down">LEARN NOW, PAY LATER</span>
             </a>
           {%- endif -%}
         </div>
@@ -80,7 +80,20 @@
     { "type": "text", "id": "sale_price", "label": "Sale Price", "default": "$2,497" },
     { "type": "text", "id": "regular_price", "label": "Regular Price", "default": "$4,899" },
     { "type": "url", "id": "cart_link", "label": "Add to Cart Link" },
-    { "type": "url", "id": "lnpl_link", "label": "Learn Now Pay Later Link" }
+    { "type": "url", "id": "lnpl_link", "label": "Learn Now Pay Later Link" },
+    { "type": "header", "content": "Typography" },
+    { "type": "text", "id": "title_size", "label": "Title Font Size", "default": "clamp(28px, 4vw, 48px)" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#141414" },
+    { "type": "text", "id": "details_title_size", "label": "Details Title Font Size", "default": "clamp(20px, 2.5vw, 30px)" },
+    { "type": "text", "id": "body_size", "label": "Body Font Size", "default": "clamp(14px, 1.3vw, 16px)" },
+    { "type": "color", "id": "body_color", "label": "Body Color", "default": "#141414" },
+    { "type": "text", "id": "price_size", "label": "Price Font Size", "default": "clamp(20px, 2.5vw, 28px)" },
+    { "type": "text", "id": "btn_font_size", "label": "Button Font Size", "default": "14px" },
+    { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#C1FF72" },
+    { "type": "color", "id": "bonus_bg_color", "label": "Bonus Background Color", "default": "#0f828c" },
+    { "type": "color", "id": "bonus_text_color", "label": "Bonus Text Color", "default": "#ffffff" },
+    { "type": "header", "content": "Layout" },
+    { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "1400" }
   ],
   "blocks": [
     {

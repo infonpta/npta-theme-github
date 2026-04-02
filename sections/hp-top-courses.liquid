@@ -2,17 +2,17 @@
 {{ 'hp-sections.css' | asset_url | stylesheet_tag }}
 
 <section id="hp-courses-{{ sid }}" class="hp-courses">
-  <div class="hp-courses__inner">
+  <div class="hp-courses__inner" style="max-width: {{ section.settings.container_width }}px;">
     <div class="hp-courses__header">
-      <h2 class="hp-courses__title">{{ section.settings.heading }}</h2>
+      <h2 class="hp-courses__title" style="font-size: {{ section.settings.title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.heading }}</h2>
       {%- if section.settings.view_all_link != blank -%}
-        <a href="{{ section.settings.view_all_link }}" class="hp-btn hp-btn--outline-dark">
-          <span class="hp-btn__label">{{ section.settings.view_all_text | default: 'VIEW ALL COURSES' }}</span>
-          <span class="hp-btn__label">{{ section.settings.view_all_text | default: 'VIEW ALL COURSES' }}</span>
+        <a href="{{ section.settings.view_all_link }}" class="btn hp-btn-outline" style="font-size: {{ section.settings.btn_font_size }};">
+          <span class="btn-label-down">{{ section.settings.view_all_text | default: 'VIEW ALL COURSES' }}</span>
+          <span class="btn-label-down">{{ section.settings.view_all_text | default: 'VIEW ALL COURSES' }}</span>
         </a>
       {%- endif -%}
     </div>
-    <p class="hp-courses__sub">{{ section.settings.subheading }}</p>
+    <p class="hp-courses__sub" style="font-size: {{ section.settings.body_size }}; color: {{ section.settings.body_color }};">{{ section.settings.subheading }}</p>
 
     <div class="hp-courses__grid">
       {%- for block in section.blocks -%}
@@ -30,11 +30,11 @@
                 height="375">
             </div>
           {%- endif -%}
-          <h3 class="hp-courses__card-title">{{ block.settings.title }}</h3>
+          <h3 class="hp-courses__card-title" style="font-size: {{ section.settings.card_title_size }}; color: {{ section.settings.title_color }};">{{ block.settings.title }}</h3>
           {%- if block.settings.button_link != blank -%}
-            <a href="{{ block.settings.button_link }}" class="hp-btn hp-btn--outline-dark hp-btn--sm">
-              <span class="hp-btn__label">LEARN MORE</span>
-              <span class="hp-btn__label">LEARN MORE</span>
+            <a href="{{ block.settings.button_link }}" class="btn hp-btn-outline" style="font-size: {{ section.settings.btn_font_size }};">
+              <span class="btn-label-down">LEARN MORE</span>
+              <span class="btn-label-down">LEARN MORE</span>
             </a>
           {%- endif -%}
         </div>
@@ -50,7 +50,16 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "Our Top Courses" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Explore our best selling courses trusted by trainers, built for your future." },
     { "type": "text", "id": "view_all_text", "label": "View All Text", "default": "VIEW ALL COURSES" },
-    { "type": "url", "id": "view_all_link", "label": "View All Link" }
+    { "type": "url", "id": "view_all_link", "label": "View All Link" },
+    { "type": "header", "content": "Typography" },
+    { "type": "text", "id": "title_size", "label": "Heading Font Size", "default": "clamp(28px, 3.8vw, 42px)" },
+    { "type": "color", "id": "title_color", "label": "Heading Color", "default": "#141414" },
+    { "type": "text", "id": "body_size", "label": "Body Font Size", "default": "clamp(14px, 1.4vw, 17px)" },
+    { "type": "color", "id": "body_color", "label": "Body Color", "default": "#555555" },
+    { "type": "text", "id": "card_title_size", "label": "Card Title Font Size", "default": "clamp(16px, 1.8vw, 22px)" },
+    { "type": "text", "id": "btn_font_size", "label": "Button Font Size", "default": "14px" },
+    { "type": "header", "content": "Layout" },
+    { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "1400" }
   ],
   "blocks": [
     {

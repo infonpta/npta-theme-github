@@ -20,17 +20,17 @@
   {%- endif -%}
   <div class="hp-hero__overlay"></div>
 
-  <div class="hp-hero__content">
+  <div class="hp-hero__content" style="max-width: {{ section.settings.container_width }}px;">
     {%- if section.settings.headline != blank -%}
-      <h1 class="hp-hero__title">{{ section.settings.headline }}</h1>
+      <h1 class="hp-hero__title" style="font-size: {{ section.settings.title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.headline }}</h1>
     {%- endif -%}
     {%- if section.settings.subheading != blank -%}
-      <p class="hp-hero__sub">{{ section.settings.subheading }}</p>
+      <p class="hp-hero__sub" style="font-size: {{ section.settings.body_size }}; color: {{ section.settings.body_color }};">{{ section.settings.subheading }}</p>
     {%- endif -%}
     {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
-      <a href="{{ section.settings.button_link }}" class="hp-btn hp-btn--primary">
-        <span class="hp-btn__label">{{ section.settings.button_text }}</span>
-        <span class="hp-btn__label">{{ section.settings.button_text }}</span>
+      <a href="{{ section.settings.button_link }}" class="btn button-yg btn--primary" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+        <span class="btn-label-down">{{ section.settings.button_text }}</span>
+        <span class="btn-label-down">{{ section.settings.button_text }}</span>
       </a>
     {%- endif -%}
   </div>
@@ -44,7 +44,16 @@
     { "type": "text", "id": "headline", "label": "Headline", "default": "Spring Forward Your Career" },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Earn your NASM certification through NPTA™ and gain the hands-on training, job placement support, and career-ready experience that you need." },
     { "type": "text", "id": "button_text", "label": "Button Text", "default": "START TODAY" },
-    { "type": "url", "id": "button_link", "label": "Button Link" }
+    { "type": "url", "id": "button_link", "label": "Button Link" },
+    { "type": "header", "content": "Typography" },
+    { "type": "text", "id": "title_size", "label": "Title Font Size", "default": "clamp(32px, 5.5vw, 65px)" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#ffffff" },
+    { "type": "text", "id": "body_size", "label": "Body Font Size", "default": "clamp(14px, 1.8vw, 18px)" },
+    { "type": "color", "id": "body_color", "label": "Body Color", "default": "#ffffff" },
+    { "type": "text", "id": "btn_font_size", "label": "Button Font Size", "default": "14px" },
+    { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#C1FF72" },
+    { "type": "header", "content": "Layout" },
+    { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "860" }
   ],
   "presets": [{ "name": "HP Hero Banner" }]
 }
