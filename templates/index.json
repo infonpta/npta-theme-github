@@ -4,7 +4,7 @@
       "type": "hp-hero",
       "settings": {
         "headline": "Spring Forward Your Career",
-        "subheading": "Earn your NASM certification through NPTA™ and gain the hands-on training, job placement support, and career-ready experience that you need.",
+        "subheading": "Earn your NASM certification through NPTA\u2122 and gain the hands-on training, job placement support, and career-ready experience that you need.",
         "button_text": "START TODAY",
         "button_link": ""
       }
@@ -13,21 +13,63 @@
       "type": "hp-elite-bundle",
       "settings": {
         "heading": "The Elite Bundle",
-        "subtitle": "NASM certified. NPTA™ trained. Career ready.",
+        "subtitle": "NASM certified. NPTA\u2122 trained. Career ready.",
         "details_heading": "What's included",
         "bonus_text": "FREE GLP-1 CERTIFICATION - Understanding Weight Loss Medications",
         "sale_price": "$2,497",
         "regular_price": "$4,899",
         "cart_link": "",
-        "lnpl_link": ""
+        "lnpl_link": "",
+        "subtitle_size": "clamp(14px, 1.5vw, 18px)",
+        "subtitle_color": "#555555",
+        "checklist_size": "clamp(14px, 1.3vw, 16px)",
+        "bonus_font_size": "clamp(13px, 1.2vw, 15px)",
+        "bonus_bg_color": "#e8e6e0",
+        "bonus_text_color": "#141414",
+        "price_label_size": "clamp(14px, 1.3vw, 16px)",
+        "image_position": "left",
+        "btn1_text": "ADD TO CART",
+        "btn1_font_size": "14px",
+        "btn1_text_color": "#141414",
+        "btn1_bg_color": "#C1FF72",
+        "btn2_text": "LEARN NOW, PAY LATER",
+        "btn2_font_size": "14px",
+        "btn2_text_color": "#141414",
+        "btn2_bg_color": "#ffffff",
+        "btn2_border_color": "#141414"
       },
       "blocks": {
-        "check_1": { "type": "checklist_item", "settings": { "text": "NASM CPT - Certified Personal Trainer" } },
-        "check_2": { "type": "checklist_item", "settings": { "text": "NASM CNC - Certified Nutrition Coach" } },
-        "check_3": { "type": "checklist_item", "settings": { "text": "NASM PES - Performance Exercise Specialist" } },
-        "check_4": { "type": "checklist_item", "settings": { "text": "NASM CES - Corrective Exercise Specialist" } }
+        "check_1": {
+          "type": "checklist_item",
+          "settings": {
+            "text": "NASM CPT - Certified Personal Trainer"
+          }
+        },
+        "check_2": {
+          "type": "checklist_item",
+          "settings": {
+            "text": "NASM CNC - Certified Nutrition Coach"
+          }
+        },
+        "check_3": {
+          "type": "checklist_item",
+          "settings": {
+            "text": "NASM PES - Performance Exercise Specialist"
+          }
+        },
+        "check_4": {
+          "type": "checklist_item",
+          "settings": {
+            "text": "NASM CES - Corrective Exercise Specialist"
+          }
+        }
       },
-      "block_order": ["check_1", "check_2", "check_3", "check_4"]
+      "block_order": [
+        "check_1",
+        "check_2",
+        "check_3",
+        "check_4"
+      ]
     },
     "hp_finance": {
       "type": "hp-finance",
@@ -38,11 +80,33 @@
         "button_link": ""
       },
       "blocks": {
-        "feat_1": { "type": "feature", "settings": { "title": "GET APPROVED", "description": "Get a real-time decision." } },
-        "feat_2": { "type": "feature", "settings": { "title": "EASY PAYMENTS", "description": "Split your purchase into 3, 6, and easy payments." } },
-        "feat_3": { "type": "feature", "settings": { "title": "HASSLE-FREE LEARNING", "description": "0% interest payments with no surprises." } }
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "title": "GET APPROVED",
+            "description": "Get a real-time decision."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "title": "EASY PAYMENTS",
+            "description": "Split your purchase into 3, 6, and easy payments."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "title": "HASSLE-FREE LEARNING",
+            "description": "0% interest payments with no surprises."
+          }
+        }
       },
-      "block_order": ["feat_1", "feat_2", "feat_3"]
+      "block_order": [
+        "feat_1",
+        "feat_2",
+        "feat_3"
+      ]
     },
     "hp_process": {
       "type": "hp-process",
@@ -52,11 +116,30 @@
         "button_link": ""
       },
       "blocks": {
-        "step_1": { "type": "step", "settings": { "title": "Get Certified. Get Credible." } },
-        "step_2": { "type": "step", "settings": { "title": "Train Real People. Build Real Confidence." } },
-        "step_3": { "type": "step", "settings": { "title": "Get Mentored, Get Hired." } }
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Get Certified. Get Credible."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Train Real People. Build Real Confidence."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Get Mentored, Get Hired."
+          }
+        }
       },
-      "block_order": ["step_1", "step_2", "step_3"]
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ]
     },
     "hp_advantage": {
       "type": "hp-advantage",
@@ -66,12 +149,41 @@
         "button_link": ""
       },
       "blocks": {
-        "ben_1": { "type": "benefit", "settings": { "title": "OFFICIAL CANADIAN NASM PARTNER", "description": "Earn your NASM certification through an official Canadian partner, combining global standards with localized support and guidance." } },
-        "ben_2": { "type": "benefit", "settings": { "title": "PRACTICAL REAL-WORLD TRAINING", "description": "Build confidence beyond theory with an apprenticeship-based approach grounded in real coaching experience and the NASM OPT™ Model." } },
-        "ben_3": { "type": "benefit", "settings": { "title": "FLEXIBLE, SELF-PACED LEARNING", "description": "Study on your own schedule with 100% online programming designed to fit around your life and commitments." } },
-        "ben_4": { "type": "benefit", "settings": { "title": "CAREER-READY, WORLDWIDE", "description": "Graduate with a globally respected certification plus the local insight, mentorship, and support needed to enter the global fitness industry with clarity." } }
+        "ben_1": {
+          "type": "benefit",
+          "settings": {
+            "title": "OFFICIAL CANADIAN NASM PARTNER",
+            "description": "Earn your NASM certification through an official Canadian partner, combining global standards with localized support and guidance."
+          }
+        },
+        "ben_2": {
+          "type": "benefit",
+          "settings": {
+            "title": "PRACTICAL REAL-WORLD TRAINING",
+            "description": "Build confidence beyond theory with an apprenticeship-based approach grounded in real coaching experience and the NASM OPT\u2122 Model."
+          }
+        },
+        "ben_3": {
+          "type": "benefit",
+          "settings": {
+            "title": "FLEXIBLE, SELF-PACED LEARNING",
+            "description": "Study on your own schedule with 100% online programming designed to fit around your life and commitments."
+          }
+        },
+        "ben_4": {
+          "type": "benefit",
+          "settings": {
+            "title": "CAREER-READY, WORLDWIDE",
+            "description": "Graduate with a globally respected certification plus the local insight, mentorship, and support needed to enter the global fitness industry with clarity."
+          }
+        }
       },
-      "block_order": ["ben_1", "ben_2", "ben_3", "ben_4"]
+      "block_order": [
+        "ben_1",
+        "ben_2",
+        "ben_3",
+        "ben_4"
+      ]
     },
     "hp_trending": {
       "type": "hp-trending",
@@ -80,12 +192,45 @@
         "subheading": "Stay ahead with the latest programs, and partnerships designed to elevate your fitness career!"
       },
       "blocks": {
-        "career_1": { "type": "career_card", "settings": { "title": "Social Media Influencer", "description": "Expand your reach, attract clients, and boost your brand with strategies top influencers use to succeed online.", "size": "large" } },
-        "career_2": { "type": "career_card", "settings": { "title": "Advanced Cardio Programming", "description": "Harness cutting-edge science to design powerful, personalized cardio programs that deliver unstoppable client results.", "size": "small" } },
-        "career_3": { "type": "career_card", "settings": { "title": "Business Blueprint", "description": "Build a thriving fitness career with proven business strategies, expert coaching, and tools to grow a loyal client base.", "size": "small" } },
-        "career_4": { "type": "career_card", "settings": { "title": "Mindful Stress Management", "description": "Learn practical, science-backed tools to manage stress with guided sessions, gentle movement, and everyday techniques.", "size": "large" } }
+        "career_1": {
+          "type": "career_card",
+          "settings": {
+            "title": "Social Media Influencer",
+            "description": "Expand your reach, attract clients, and boost your brand with strategies top influencers use to succeed online.",
+            "size": "large"
+          }
+        },
+        "career_2": {
+          "type": "career_card",
+          "settings": {
+            "title": "Advanced Cardio Programming",
+            "description": "Harness cutting-edge science to design powerful, personalized cardio programs that deliver unstoppable client results.",
+            "size": "small"
+          }
+        },
+        "career_3": {
+          "type": "career_card",
+          "settings": {
+            "title": "Business Blueprint",
+            "description": "Build a thriving fitness career with proven business strategies, expert coaching, and tools to grow a loyal client base.",
+            "size": "small"
+          }
+        },
+        "career_4": {
+          "type": "career_card",
+          "settings": {
+            "title": "Mindful Stress Management",
+            "description": "Learn practical, science-backed tools to manage stress with guided sessions, gentle movement, and everyday techniques.",
+            "size": "large"
+          }
+        }
       },
-      "block_order": ["career_1", "career_2", "career_3", "career_4"]
+      "block_order": [
+        "career_1",
+        "career_2",
+        "career_3",
+        "career_4"
+      ]
     },
     "hp_discover": {
       "type": "quiz-hero-popup",
@@ -120,11 +265,30 @@
         "view_all_link": ""
       },
       "blocks": {
-        "course_1": { "type": "course", "settings": { "title": "Certified Personal Trainer (CPT)" } },
-        "course_2": { "type": "course", "settings": { "title": "Certified Nutrition Coach (CNC)" } },
-        "course_3": { "type": "course", "settings": { "title": "Certified Wellness Coach (CWC)" } }
+        "course_1": {
+          "type": "course",
+          "settings": {
+            "title": "Certified Personal Trainer (CPT)"
+          }
+        },
+        "course_2": {
+          "type": "course",
+          "settings": {
+            "title": "Certified Nutrition Coach (CNC)"
+          }
+        },
+        "course_3": {
+          "type": "course",
+          "settings": {
+            "title": "Certified Wellness Coach (CWC)"
+          }
+        }
       },
-      "block_order": ["course_1", "course_2", "course_3"]
+      "block_order": [
+        "course_1",
+        "course_2",
+        "course_3"
+      ]
     }
   },
   "order": [

@@ -44,6 +44,20 @@
 .hp-btn-outline:hover {
   background-color: transparent !important;
 }
+.hp-btn-outline:hover .btn-label-down {
+  top: 0%;
+}
+
+/* --- Generic outline button with inline styles --- */
+.button-outline-hp {
+  background-color: transparent;
+}
+.button-outline-hp:hover .btn-label-down {
+  top: 0%;
+}
+.button-outline-hp:hover {
+  background-color: transparent;
+}
 
 /* ===================================================================
    1. HERO BANNER
@@ -129,13 +143,21 @@
   align-items: center;
   text-align: left;
 }
+.hp-elite__grid--image-right {
+  flex-direction: column-reverse;
+}
+.hp-elite__image {
+  display: flex;
+  align-items: stretch;
+}
 .hp-elite__image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 .hp-elite__details {
-  max-width: 520px;
+  max-width: 560px;
 }
 .hp-elite__details-title {
   font-family: var(--hp-font-heading);
@@ -200,7 +222,10 @@
     flex-direction: row;
     gap: 48px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+  .hp-elite__grid--image-right {
+    flex-direction: row-reverse;
   }
   .hp-elite__image {
     flex: 0 0 auto;
