@@ -13,9 +13,45 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "disabled": true,
-      "custom_css": [],
-      "settings": {}
+      "blocks": {
+        "message_XtU6jK": {
+          "type": "message",
+          "settings": {
+            "text": "<p> <a href=\"https://www.npta.ca/collections/career\" title=\"https://www.npta.ca/collections/career\">Elite Bundle Sale: Up to 50% off - Claim now! </a>  </p>",
+            "link_label": "Shop now",
+            "link_url": ""
+          }
+        },
+        "message_7M8RCx": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "text": "<p>🌸  SPRING RESET Flash Sale  - <a href=\"https://www.npta.ca/products/performance-wellness-bundle\" title=\"Performance Wellness Bundle\"><span style=\"text-decoration:underline\">SAVE $2,899 now</span></a>  🌸</p>",
+            "link_label": "Shop now",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "message_XtU6jK",
+        "message_7M8RCx"
+      ],
+      "custom_css": [
+        ".announcement .rt p {text-transform: uppercase; letter-spacing: 0.5px;}",
+        ".announcement .rt p a {color: #fff;}",
+        ".announcement .rt p span {color: #c1ff72;}"
+      ],
+      "settings": {
+        "bg_color": "#0f828c",
+        "text_color": "#ffffff",
+        "font_size": 20,
+        "padding_y": 20,
+        "rotation_ms": 5000,
+        "countdown_enabled": false,
+        "countdown_label": "Ends in:",
+        "countdown_end": "2026-02-28T23:59:59-08:00",
+        "countdown_expired_text": "Sale ended"
+      }
     },
     "header": {
       "type": "header",
