@@ -410,6 +410,12 @@
   flex-direction: column;
   gap: 40px;
 }
+/* Mobile layout order */
+.hp-advantage__inner--mobile-content-top .hp-advantage__image { order: 2; }
+.hp-advantage__inner--mobile-content-top .hp-advantage__content { order: 1; }
+.hp-advantage__inner--mobile-image-top .hp-advantage__image { order: 1; }
+.hp-advantage__inner--mobile-image-top .hp-advantage__content { order: 2; }
+
 .hp-advantage__image img {
   width: 100%;
   height: auto;
@@ -466,6 +472,12 @@
     align-items: flex-start;
     gap: 60px;
   }
+  /* Desktop layout order */
+  .hp-advantage__inner--desktop-image-left .hp-advantage__image { order: 1; }
+  .hp-advantage__inner--desktop-image-left .hp-advantage__content { order: 2; }
+  .hp-advantage__inner--desktop-image-right .hp-advantage__image { order: 2; }
+  .hp-advantage__inner--desktop-image-right .hp-advantage__content { order: 1; }
+
   .hp-advantage__image { flex: 0 0 42%; }
   .hp-advantage__content { flex: 1; padding-top: 40px; }
 }
