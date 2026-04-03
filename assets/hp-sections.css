@@ -142,6 +142,8 @@
   gap: 32px;
   align-items: center;
   text-align: left;
+  max-width: 834px;
+  margin: 0 auto;
 }
 /* Mobile layout order */
 .hp-elite__grid--mobile-content-first .hp-elite__image { order: 2; }

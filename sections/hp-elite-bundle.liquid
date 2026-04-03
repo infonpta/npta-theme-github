@@ -16,7 +16,7 @@
     <h2 class="hp-elite__title" style="font-size: {{ section.settings.title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.heading }}</h2>
     <p class="hp-elite__subtitle" style="font-size: {{ section.settings.subtitle_size }}; color: {{ section.settings.subtitle_color }};">{{ section.settings.subtitle }}</p>
 
-    <div class="hp-elite__grid hp-elite__grid--{{ section.settings.desktop_layout }} hp-elite__grid--mobile-{{ section.settings.mobile_layout }}" style="--hp-elite-img-flex: {{ img_flex }}; --hp-elite-content-flex: {{ content_flex }};">
+    <div class="hp-elite__grid hp-elite__grid--{{ section.settings.desktop_layout }} hp-elite__grid--mobile-{{ section.settings.mobile_layout }}" style="--hp-elite-img-flex: {{ img_flex }}; --hp-elite-content-flex: {{ content_flex }}; max-width: {{ section.settings.grid_width }}px;">
       <div class="hp-elite__image">
         {%- if section.settings.product_image != blank -%}
           <img
@@ -307,7 +307,8 @@
       ],
       "default": "image-first"
     },
-    { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "1400" }
+    { "type": "text", "id": "grid_width", "label": "Grid Max Width - Image + Content (px)", "default": "834" },
+    { "type": "text", "id": "container_width", "label": "Section Max Width (px)", "default": "1400" }
   ],
   "blocks": [
     {
