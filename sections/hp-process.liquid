@@ -11,12 +11,17 @@
       {%- for block in section.blocks -%}
         <div class="hp-process__step" {{ block.shopify_attributes }}>
           <span class="hp-process__step-label" style="font-size: {{ section.settings.label_size }}; color: {{ section.settings.label_color }};">STEP {{ forloop.index }}</span>
-          <h3 class="hp-process__step-title" style="font-size: {{ section.settings.step_title_size }}; color: {{ section.settings.step_title_color }};">{{ block.settings.title }}</h3>
+          <div class="hp-process__step-title" style="font-size: {{ section.settings.step_title_size }}; color: {{ section.settings.step_title_color }};">{{ block.settings.title }}</div>
         </div>
         {%- unless forloop.last -%}
           <div class="hp-process__arrow" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="66" viewBox="0 0 43 66" fill="none">
+            {%- comment -%} Right arrow (desktop) {%- endcomment -%}
+            <svg class="hp-process__arrow-right" xmlns="http://www.w3.org/2000/svg" width="43" height="66" viewBox="0 0 43 66" fill="none">
               <path d="M0 65.3333V0L42.1667 32.6667L0 65.3333Z" fill="#01241E"/>
+            </svg>
+            {%- comment -%} Down arrow (mobile) {%- endcomment -%}
+            <svg class="hp-process__arrow-down" xmlns="http://www.w3.org/2000/svg" width="66" height="43" viewBox="0 0 66 43" fill="none">
+              <path d="M0 0H65.3333L32.6667 42.1667L0 0Z" fill="#01241E"/>
             </svg>
           </div>
         {%- endunless -%}
@@ -57,16 +62,16 @@
       "type": "step",
       "name": "Step",
       "settings": [
-        { "type": "text", "id": "title", "label": "Step Title", "default": "Get Certified. Get Credible." }
+        { "type": "richtext", "id": "title", "label": "Step Title", "default": "<p>Get Certified.<br>Get Credible.</p>" }
       ]
     }
   ],
   "presets": [{
     "name": "HP 3-Step Process",
     "blocks": [
-      { "type": "step", "settings": { "title": "Get Certified. Get Credible." } },
-      { "type": "step", "settings": { "title": "Train Real People. Build Real Confidence." } },
-      { "type": "step", "settings": { "title": "Get Mentored, Get Hired." } }
+      { "type": "step", "settings": { "title": "<p>Get Certified.<br>Get Credible.</p>" } },
+      { "type": "step", "settings": { "title": "<p>Train Real People.<br>Build Real Confidence.</p>" } },
+      { "type": "step", "settings": { "title": "<p>Get Mentored,<br>Get Hired.</p>" } }
     ]
   }]
 }
