@@ -194,9 +194,10 @@
 .hp-elite__pricing {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin: 32px auto 24px;
   font-family: var(--hp-font-body);
 }
 .hp-elite__sale-label {
@@ -216,6 +217,7 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (min-width: 750px) {
