@@ -1,23 +1,34 @@
 {%- assign sid = section.id -%}
 {{ 'hp-sections.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%} Parse layout ratio {%- endcomment -%}
+{%- assign ratio = section.settings.layout_ratio | default: '50-50' -%}
+{%- case ratio -%}
+  {%- when '40-60' -%}{%- assign img_flex = '0 0 40%' -%}{%- assign content_flex = '0 0 60%' -%}
+  {%- when '60-40' -%}{%- assign img_flex = '0 0 60%' -%}{%- assign content_flex = '0 0 40%' -%}
+  {%- when '30-70' -%}{%- assign img_flex = '0 0 30%' -%}{%- assign content_flex = '0 0 70%' -%}
+  {%- when '70-30' -%}{%- assign img_flex = '0 0 70%' -%}{%- assign content_flex = '0 0 30%' -%}
+  {%- else -%}{%- assign img_flex = '0 0 50%' -%}{%- assign content_flex = '0 0 50%' -%}
+{%- endcase -%}
+
 <section id="hp-elite-{{ sid }}" class="hp-elite">
   <div class="hp-elite__inner" style="max-width: {{ section.settings.container_width }}px;">
     <h2 class="hp-elite__title" style="font-size: {{ section.settings.title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.heading }}</h2>
     <p class="hp-elite__subtitle" style="font-size: {{ section.settings.subtitle_size }}; color: {{ section.settings.subtitle_color }};">{{ section.settings.subtitle }}</p>
 
-    <div class="hp-elite__grid{% if section.settings.image_position == 'right' %} hp-elite__grid--image-right{% endif %}">
+    <div class="hp-elite__grid hp-elite__grid--{{ section.settings.desktop_layout }} hp-elite__grid--mobile-{{ section.settings.mobile_layout }}" style="--hp-elite-img-flex: {{ img_flex }}; --hp-elite-content-flex: {{ content_flex }};">
       <div class="hp-elite__image">
         {%- if section.settings.product_image != blank -%}
           <img
-            src="{{ section.settings.product_image | image_url: width: 800 }}"
+            src="{{ section.settings.product_image | image_url: width: 1000 }}"
             srcset="{{ section.settings.product_image | image_url: width: 500 }} 500w,
-                    {{ section.settings.product_image | image_url: width: 800 }} 800w"
-            sizes="(max-width: 749px) 90vw, 400px"
+                    {{ section.settings.product_image | image_url: width: 800 }} 800w,
+                    {{ section.settings.product_image | image_url: width: 1000 }} 1000w"
+            sizes="(max-width: 749px) 90vw, 50vw"
             alt="{{ section.settings.heading | escape }}"
             loading="lazy"
-            width="400"
-            height="475">
+            width="500"
+            height="600">
         {%- endif -%}
       </div>
 
@@ -57,7 +68,13 @@
             </a>
           {%- endif -%}
           {%- if section.settings.lnpl_link != blank -%}
-            <a href="{{ section.settings.lnpl_link }}" class="btn button-outline-hp" style="font-size: {{ section.settings.btn2_font_size }}; background-color: {{ section.settings.btn2_bg_color }}; border: 2px solid {{ section.settings.btn2_border_color }};">
+            <a href="{{ section.settings.lnpl_link }}"
+               class="btn button-outline-hp"
+               style="font-size: {{ section.settings.btn2_font_size }}; background-color: {{ section.settings.btn2_bg_color }}; border: 2px solid {{ section.settings.btn2_border_color }};"
+               data-elective-financing-link
+               data-product-handle="{{ section.settings.elective_product_handle }}"
+               data-product-id="{{ section.settings.elective_product_id }}"
+               data-product-title="{{ section.settings.heading | escape }}">
               <span class="btn-label-down" style="color: {{ section.settings.btn2_text_color }};">{{ section.settings.btn2_text }}</span>
               <span class="btn-label-down" style="color: {{ section.settings.btn2_text_color }};">{{ section.settings.btn2_text }}</span>
             </a>
@@ -67,6 +84,150 @@
     </div>
   </div>
 </section>
+
+{%- comment -%} GHL Finance Modal + Elective script {%- endcomment -%}
+{% render 'ghl-finance-modal' %}
+
+<script>
+(function(){
+  const LINK_SEL = '[data-elective-financing-link]';
+  const GHL_FORM_ID = 'jbeQYeHWMI1dM9tX0mYF';
+  const GHL_BASE = `https://app.npta.ca/widget/form/${GHL_FORM_ID}`;
+
+  const MODAL_ID = 'ghlFinanceModal';
+  const MOUNT_ID = 'ghlFormMount';
+
+  const TARGET_KEY = 'npta_finance_target';
+  const SUBMITTED_KEY = 'npta_finance_submitted_ts';
+
+  const SUBMIT_TTL_DAYS = 0;
+
+  function getModal(){ return document.getElementById(MODAL_ID); }
+  function getMount(){ return document.getElementById(MOUNT_ID); }
+
+  function openModal(){
+    const m = getModal();
+    if(!m) return;
+    m.hidden = false;
+    m.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(opts){
+    const m = getModal();
+    if(!m) return;
+    m.hidden = true;
+    m.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    const mount = getMount();
+    if (mount && (!opts || opts.clear !== false)) mount.innerHTML = '';
+  }
+
+  function isSubmitted(){
+    try {
+      const v = localStorage.getItem(SUBMITTED_KEY);
+      if (!v) return false;
+      const ts = parseInt(v, 10);
+      if (!Number.isFinite(ts)) return true;
+      if (SUBMIT_TTL_DAYS && SUBMIT_TTL_DAYS > 0) {
+        const ttlMs = SUBMIT_TTL_DAYS * 24 * 60 * 60 * 1000;
+        if (Date.now() - ts > ttlMs) return false;
+      }
+      return true;
+    } catch(e){ return false; }
+  }
+
+  function toQuery(obj){
+    return Object.keys(obj || {})
+      .filter(k => obj[k] != null && obj[k] !== '')
+      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
+      .join('&');
+  }
+
+  function buildTarget(href, a){
+    const u = new URL(href, window.location.origin);
+    const q = u.searchParams;
+    if (a.dataset.productHandle) q.set('product_handle', a.dataset.productHandle);
+    if (a.dataset.productId) q.set('product_id', a.dataset.productId);
+    const title = a.dataset.productTitle || document.title || '';
+    if (title) q.set('product_title', title);
+    u.search = q.toString();
+    return u.toString();
+  }
+
+  function buildFormSrc(a){
+    const attr = (window.__nptaGetAttribution && window.__nptaGetAttribution()) || {};
+    const utm = {
+      utm_source: attr.utm_source || '',
+      utm_medium: attr.utm_medium || '',
+      utm_campaign: attr.utm_campaign || '',
+      utm_term: attr.utm_term || '',
+      utm_content: attr.utm_content || ''
+    };
+    const prod = {
+      product_title: a.dataset.productTitle || document.title || '',
+      product_handle: a.dataset.productHandle || '',
+      product_id: a.dataset.productId || ''
+    };
+    const qs = [toQuery(utm), toQuery(prod)].filter(Boolean).join('&');
+    return qs ? `${GHL_BASE}?${qs}` : GHL_BASE;
+  }
+
+  function injectIframe(src){
+    const mount = getMount();
+    if (!mount) return;
+    mount.innerHTML = '';
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Elective Financing Form';
+    iframe.loading = 'lazy';
+    iframe.setAttribute('allowtransparency','true');
+    iframe.setAttribute('scrolling','auto');
+    mount.appendChild(iframe);
+  }
+
+  function wire(root){
+    root = root || document;
+    const links = root.querySelectorAll(LINK_SEL);
+    if (!links.length) return;
+    links.forEach((a) => {
+      if (a.dataset.ghlWired === '1') return;
+      a.dataset.ghlWired = '1';
+      a.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        const targetUrl = buildTarget(a.getAttribute('href'), a);
+        sessionStorage.setItem(TARGET_KEY, targetUrl);
+        if (isSubmitted()) {
+          window.location.href = targetUrl;
+          return;
+        }
+        const src = buildFormSrc(a);
+        injectIframe(src);
+        openModal();
+      }, { capture:true });
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    if (e.target.matches('[data-close-ghl], [data-close-ghl] *')) closeModal({ clear:true });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeModal({ clear:true });
+  });
+  document.addEventListener('DOMContentLoaded', function(){
+    closeModal({ clear:true });
+    wire(document);
+  });
+  window.addEventListener('pageshow', function(){
+    closeModal({ clear:true });
+  });
+  document.addEventListener('shopify:section:load', function(e){
+    closeModal({ clear:true });
+    wire(e.target);
+  });
+})();
+</script>
 
 {% schema %}
 {
@@ -88,13 +249,15 @@
     { "type": "color", "id": "btn1_text_color", "label": "Button 1 Text Color", "default": "#141414" },
     { "type": "color", "id": "btn1_bg_color", "label": "Button 1 Background Color", "default": "#C1FF72" },
 
-    { "type": "header", "content": "Button 2 (Secondary)" },
+    { "type": "header", "content": "Button 2 (Elective / LNPL)" },
     { "type": "text", "id": "btn2_text", "label": "Button 2 Text", "default": "LEARN NOW, PAY LATER" },
-    { "type": "url", "id": "lnpl_link", "label": "Button 2 Link" },
+    { "type": "url", "id": "lnpl_link", "label": "Button 2 Link (Elective checkout URL)" },
     { "type": "text", "id": "btn2_font_size", "label": "Button 2 Font Size", "default": "14px" },
     { "type": "color", "id": "btn2_text_color", "label": "Button 2 Text Color", "default": "#141414" },
     { "type": "color", "id": "btn2_bg_color", "label": "Button 2 Background Color", "default": "#ffffff" },
     { "type": "color", "id": "btn2_border_color", "label": "Button 2 Border Color", "default": "#141414" },
+    { "type": "text", "id": "elective_product_handle", "label": "Elective Product Handle", "info": "e.g. elite-bundle" },
+    { "type": "text", "id": "elective_product_id", "label": "Elective Product ID", "info": "Numeric Shopify product ID" },
 
     { "type": "header", "content": "Typography" },
     { "type": "text", "id": "title_size", "label": "Title Font Size", "default": "clamp(28px, 4vw, 48px)" },
@@ -113,13 +276,36 @@
     { "type": "header", "content": "Layout" },
     {
       "type": "select",
-      "id": "image_position",
-      "label": "Image Position",
+      "id": "layout_ratio",
+      "label": "Image / Content Width Ratio",
       "options": [
-        { "value": "left", "label": "Left (Image) / Right (Content)" },
-        { "value": "right", "label": "Right (Image) / Left (Content)" }
+        { "value": "30-70", "label": "30% Image / 70% Content" },
+        { "value": "40-60", "label": "40% Image / 60% Content" },
+        { "value": "50-50", "label": "50% Image / 50% Content" },
+        { "value": "60-40", "label": "60% Image / 40% Content" },
+        { "value": "70-30", "label": "70% Image / 30% Content" }
       ],
-      "default": "left"
+      "default": "50-50"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop Layout",
+      "options": [
+        { "value": "image-first", "label": "Image Left / Content Right" },
+        { "value": "content-first", "label": "Content Left / Image Right" }
+      ],
+      "default": "image-first"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Layout",
+      "options": [
+        { "value": "image-first", "label": "Image Top / Content Bottom" },
+        { "value": "content-first", "label": "Content Top / Image Bottom" }
+      ],
+      "default": "image-first"
     },
     { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "1400" }
   ],
