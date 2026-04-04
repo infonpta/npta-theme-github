@@ -32,7 +32,7 @@
       </div>
 
       {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
-        <a href="{{ section.settings.button_link }}" class="btn button-b" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+        <a href="{{ section.settings.button_link }}" class="btn button-b" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};padding-left:20px;padding-right:20px;">
           <span class="btn-label-down" style="color: {{ section.settings.btn_text_color }};">{{ section.settings.button_text }}</span>
           <span class="btn-label-down" style="color: {{ section.settings.btn_text_color }};">{{ section.settings.button_text }}</span>
         </a>

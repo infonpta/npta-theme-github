@@ -161,7 +161,7 @@
   max-width: 100%;
 }
 .hp-elite__details-title {
-  font-family: var(--hp-font-heading);
+  font-family: var(--hp-font-body);
   font-weight: 400;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -188,16 +188,16 @@
   border-radius: 8px;
   font-family: var(--hp-font-body);
   font-weight: 700;
-  margin-bottom: 24px;
+  margin: 0 auto 30px;
   text-align: center;
 }
 .hp-elite__pricing {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: left;
   gap: 8px;
   flex-wrap: wrap;
-  margin: 32px auto 24px;
+  margin: 0;
   font-family: var(--hp-font-body);
 }
 .hp-elite__sale-label {
@@ -209,15 +209,17 @@
   color: var(--hp-dark);
 }
 .hp-elite__reg-price {
-  font-size: clamp(14px, 1.3vw, 16px);
+  font-size: clamp(16px, 2.4vw, 24px);
   color: #999;
   text-decoration: line-through;
+  text-decoration: italic;
 }
 .hp-elite__actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 30px;
 }
 
 @media (min-width: 750px) {
@@ -277,6 +279,7 @@
 .hp-finance__sub {
   font-family: var(--hp-font-body);
   margin-bottom: 40px;
+  line-height: normal;
 }
 .hp-finance__features {
   display: grid;
@@ -293,20 +296,26 @@
 }
 .hp-finance__feature-title {
   font-family: var(--hp-font-label);
-  font-weight: 700;
+  font-weight: bolder;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
 .hp-finance__feature-desc {
-  font-family: var(--hp-font-body);
-  line-height: 1.6;
+  font-family: var(--hp-font-label);
+  line-height: clamp(16px, 2.4vw, 24px);
+  font-weight: 400;
   max-width: 220px;
   margin: 0 auto;
+  font-size: clamp(14px, 2vw, 20px);
 }
 .hp-finance__btn-wrap {
   display: flex;
   justify-content: center;
+}
+.hp-finance__btn-wrap .btn.button-b {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 @media (min-width: 750px) {
   .hp-finance {
@@ -330,7 +339,6 @@
   }
   .hp-finance__features { grid-template-columns: repeat(3, 1fr); }
 }
-
 /* ===================================================================
    4. 3-STEP PROCESS
    =================================================================== */
@@ -379,7 +387,9 @@
 }
 .hp-process__arrow-right { display: none; }
 .hp-process__arrow-down { display: block; }
-
+.hp-process__btn {
+  margin-top: clamp(40px,8vw,80px);
+}
 @media (min-width: 750px) {
   .hp-process__steps {
     flex-direction: row;
@@ -387,7 +397,7 @@
     align-items: flex-start;
     gap: 0;
   }
-  .hp-process__step { flex: 1; max-width: 320px; }
+  .hp-process__step { flex: 1; max-width: 360px; }
   .hp-process__arrow {
     padding: 0 clamp(8px, 2vw, 24px);
     margin-top: 30px;
