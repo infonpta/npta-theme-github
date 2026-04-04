@@ -162,29 +162,13 @@
     }
     .wn-grid-section .wn-card__body p + p { margin-top: .35rem; }
 
-    .wn-grid-section .wn-card__btn {
+    .wn-card__atc {
         width: fit-content;
-        overflow: hidden;
-        position: relative;
     }
-    .wn-grid-section .wn-card__btn span {
+    .wn-card__atc .btn-label-down {
         font-family: var(--font-adirek800);
         font-weight: 600;
         text-transform: uppercase;
-    }
-
-    /* Button hover animation — same as base.css button-yg */
-    .wn-card__btn .btn-label-down:first-child {
-        top: 0% !important;
-    }
-    .wn-card__btn .btn-label-down:last-child {
-        top: -100% !important;
-    }
-    .wn-card__btn:hover .btn-label-down:first-child {
-        top: 100% !important;
-    }
-    .wn-card__btn:hover .btn-label-down:last-child {
-        top: 0% !important;
     }
 
     @media (max-width: 990px) {
@@ -197,11 +181,6 @@
     }
     .wn-card__actions{
     display:flex; align-items:center; gap:14px; margin-top:16px;
-    }
-    .wn-card__form {line-height: normal;}
-    .wn-card__form .wn-card__btn{
-        overflow: hidden;
-        position: relative;
     }
     .wn-card__info{
     --ring: rgba(255,255,255,.85);
@@ -298,13 +277,10 @@
 
                 <div class="wn-card__actions">
                     {% if left_variant_id != '' %}
-                    <form method="post" action="/cart/add" class="wn-card__form" novalidate>
-                        <input type="hidden" name="id" value="{{ left_variant_id }}">
-                        <button type="submit" class="btn wn-card__btn" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+                    <a href="/cart/add?id={{ left_variant_id }}" class="btn button-yg wn-card__atc" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};" data-wn-atc data-variant-id="{{ left_variant_id }}">
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.left_btn_label | default: 'Add to Cart' }}</span>
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.left_btn_label | default: 'Add to Cart' }}</span>
-                        </button>
-                    </form>
+                    </a>
                     {% endif %}
 
                     {% if left_learn_url != blank %}
@@ -363,13 +339,10 @@
 
                 <div class="wn-card__actions">
                     {% if right_variant_id != '' %}
-                    <form method="post" action="/cart/add" class="wn-card__form" novalidate>
-                        <input type="hidden" name="id" value="{{ right_variant_id }}">
-                        <button type="submit" class="btn wn-card__btn" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+                    <a href="/cart/add?id={{ right_variant_id }}" class="btn button-yg wn-card__atc" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};" data-wn-atc data-variant-id="{{ right_variant_id }}">
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.right_btn_label | default: 'Add to Cart' }}</span>
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.right_btn_label | default: 'Add to Cart' }}</span>
-                        </button>
-                    </form>
+                    </a>
                     {% endif %}
 
                     {% if right_learn_url != blank %}
@@ -386,6 +359,30 @@
     {% endfor %}
   </div>
 </section>
+
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('[data-wn-atc]');
+    if (!link) return;
+    e.preventDefault();
+    var id = link.dataset.variantId;
+    if (!id) return;
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: [{ id: parseInt(id, 10), quantity: 1 }] })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      window.location.href = '/cart';
+    })
+    .catch(function(){
+      window.location.href = '/cart/add?id=' + id;
+    });
+  });
+})();
+</script>
 
 {% schema %}
 {
