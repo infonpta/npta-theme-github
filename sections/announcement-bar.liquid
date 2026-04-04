@@ -3,11 +3,14 @@
   - Up to 4 rich-text announcements
   - Fade in/out via pure CSS (no JS for rotation)
   - Countdown uses tiny JS (needed for real time)
+  - Optional NASM Official Canadian Partner badge on right
 {% endcomment %}
+
+{%- assign partner_on = section.settings.partner_enabled -%}
 
 <section
   id="AnnouncementBar-{{ section.id }}"
-  class="announcement-rotator-section count-{{ section.blocks.size }}"
+  class="announcement-rotator-section count-{{ section.blocks.size }}{% if partner_on %} has-partner{% endif %}"
   style="
     --ann-speed: {{ section.settings.rotation_ms | default: 5000 }}ms;
     background: {{ section.settings.bg_color | default: '#C8FF63' }};
@@ -59,22 +62,49 @@
         </div>
       {% endif %}
     </div>
+
+    {% if partner_on %}
+      <div class="announcement-partner" aria-label="NASM Official Canadian Partner">
+        {% if section.settings.partner_icon != blank %}
+          <img
+            class="announcement-partner__icon"
+            src="{{ section.settings.partner_icon | image_url: width: 80 }}"
+            alt=""
+            loading="lazy"
+            width="20"
+            height="20">
+        {% endif %}
+        <span class="announcement-partner__text">{{ section.settings.partner_text }}</span>
+      </div>
+    {% endif %}
   </div>
 
   {% stylesheet %}
   #AnnouncementBar-{{ section.id }} .announcement-bar--container {
     display: flex; justify-content: center; align-items: center;
     padding: 0 12px;
+    position: relative;
+  }
+  #AnnouncementBar-{{ section.id }}.has-partner .announcement-bar--container {
+    justify-content: space-between;
+    gap: 16px;
   }
   #AnnouncementBar-{{ section.id }} .announcement-rotator {
     display: grid;
     width: 100%;
+  }
+  #AnnouncementBar-{{ section.id }}.has-partner .announcement-rotator {
+    flex: 1 1 auto;
   }
   #AnnouncementBar-{{ section.id }} .announcement {
     grid-area: 1 / 1;
     justify-self: center;
     margin: 0; text-align: center;
     opacity: 0; transform: translateY(6px);
+  }
+  #AnnouncementBar-{{ section.id }}.has-partner .announcement {
+    justify-self: start;
+    text-align: left;
   }
   #AnnouncementBar-{{ section.id }} .announcement a {
     color: #000;
@@ -116,6 +146,25 @@
     letter-spacing: 1px;
   }
 
+  /* NASM Official Canadian Partner */
+  #AnnouncementBar-{{ section.id }} .announcement-partner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    font-family: 'Poppins', var(--font-body-family);
+    font-size: {{ section.settings.partner_font_size | default: 'clamp(14px,1.6vw,16px)' }};
+    color: {{ section.settings.partner_text_color | default: '#ffffff' }};
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  #AnnouncementBar-{{ section.id }} .announcement-partner__icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
   @keyframes annFade {
     0%   { opacity: 0; transform: translateY(6px); }
     6%   { opacity: 1; transform: translateY(0); }
@@ -150,6 +199,14 @@
   @media (max-width: 640px) {
     #AnnouncementBar-{{ section.id }} .rt {
       font-size: {{ section.settings.font_size | default: 20 | minus: 2 }}px;
+    }
+    #AnnouncementBar-{{ section.id }} .announcement-partner__text {
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+    #AnnouncementBar-{{ section.id }} .announcement-partner__icon {
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -249,7 +306,14 @@
     { "type": "checkbox", "id": "countdown_enabled", "label": "Enable countdown", "default": true },
     { "type": "text", "id": "countdown_label", "label": "Countdown label", "default": "Ends in:" },
     { "type": "text", "id": "countdown_end", "label": "Countdown end (ISO with timezone)", "default": "2026-03-01T23:59:59+08:00" },
-    { "type": "text", "id": "countdown_expired_text", "label": "Expired text (optional)", "default": "Sale ended" }
+    { "type": "text", "id": "countdown_expired_text", "label": "Expired text (optional)", "default": "Sale ended" },
+
+    { "type": "header", "content": "NASM Official Canadian Partner Badge" },
+    { "type": "checkbox", "id": "partner_enabled", "label": "Show partner badge", "default": false },
+    { "type": "image_picker", "id": "partner_icon", "label": "Partner icon" },
+    { "type": "text", "id": "partner_text", "label": "Partner text", "default": "NASM OFFICIAL CANADIAN PARTNER" },
+    { "type": "text", "id": "partner_font_size", "label": "Partner font size", "default": "clamp(14px,1.6vw,16px)" },
+    { "type": "color", "id": "partner_text_color", "label": "Partner text color", "default": "#ffffff" }
   ],
   "blocks": [
     {
