@@ -7,7 +7,7 @@
       <h2 class="hp-process__heading" style="font-size: {{ section.settings.title_size }}; color: {{ section.settings.title_color }};">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
-    <div class="hp-process__steps">
+    <div class="hp-process__steps" style="max-width: {{ section.settings.steps_width }}px; margin: 0 auto;">
       {%- for block in section.blocks -%}
         <div class="hp-process__step" {{ block.shopify_attributes }}>
           <span class="hp-process__step-label" style="font-size: {{ section.settings.label_size }}; color: {{ section.settings.label_color }};">STEP {{ forloop.index }}</span>
@@ -55,7 +55,8 @@
     { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#C1FF72" },
     { "type": "header", "content": "Layout" },
     { "type": "color", "id": "bg_color", "label": "Section Background Color", "default": "#0f828c" },
-    { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "1400" }
+    { "type": "text", "id": "steps_width", "label": "Steps Container Max Width (px)", "default": "1200" },
+    { "type": "text", "id": "container_width", "label": "Section Max Width (px)", "default": "1400" }
   ],
   "blocks": [
     {
