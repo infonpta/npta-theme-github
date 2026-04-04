@@ -84,6 +84,8 @@
     display: flex; justify-content: center; align-items: center;
     padding: 0 12px;
     position: relative;
+    max-width: {{ section.settings.container_width | default: '1400px' }};
+    margin: 0 auto;
   }
   #AnnouncementBar-{{ section.id }}.has-partner .announcement-bar--container {
     justify-content: space-between;
@@ -101,10 +103,6 @@
     justify-self: center;
     margin: 0; text-align: center;
     opacity: 0; transform: translateY(6px);
-  }
-  #AnnouncementBar-{{ section.id }}.has-partner .announcement {
-    justify-self: start;
-    text-align: left;
   }
   #AnnouncementBar-{{ section.id }} .announcement a {
     color: #000;
@@ -164,6 +162,9 @@
     object-fit: contain;
     flex-shrink: 0;
   }
+  #AnnouncementBar-{{ section.id }} .announcement-partner__text {
+    display: inline-block;
+  }
 
   @keyframes annFade {
     0%   { opacity: 0; transform: translateY(6px); }
@@ -199,6 +200,21 @@
   @media (max-width: 640px) {
     #AnnouncementBar-{{ section.id }} .rt {
       font-size: {{ section.settings.font_size | default: 20 | minus: 2 }}px;
+    }
+    #AnnouncementBar-{{ section.id }}.has-partner .announcement-bar--container {
+      gap: 10px;
+      align-items: center;
+    }
+    #AnnouncementBar-{{ section.id }}.has-partner .announcement-rotator,
+    #AnnouncementBar-{{ section.id }}.has-partner .announcement-partner {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    #AnnouncementBar-{{ section.id }} .announcement-partner {
+      white-space: normal;
+      justify-content: flex-end;
+      text-align: right;
+      line-height: 1.2;
     }
     #AnnouncementBar-{{ section.id }} .announcement-partner__text {
       font-size: 11px;
@@ -302,6 +318,7 @@
     { "type": "range", "id": "font_size", "label": "Font size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 20 },
     { "type": "range", "id": "padding_y", "label": "Top/bottom padding", "min": 0, "max": 48, "step": 2, "unit": "px", "default": 12 },
     { "type": "range", "id": "rotation_ms", "label": "Rotation speed", "min": 1000, "max": 9000, "step": 250, "unit": "ms", "default": 5000 },
+    { "type": "text", "id": "container_width", "label": "Container max width", "default": "1400px", "info": "e.g. 1400px or 100%" },
 
     { "type": "checkbox", "id": "countdown_enabled", "label": "Enable countdown", "default": true },
     { "type": "text", "id": "countdown_label", "label": "Countdown label", "default": "Ends in:" },
