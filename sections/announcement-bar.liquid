@@ -99,7 +99,7 @@
     flex: 1 1 auto;
   }
   #AnnouncementBar-{{ section.id }} .announcement {
-    grid-area: 1 / 1;
+    grid-area: 1 / 2;
     justify-self: center;
     margin: 0; text-align: center;
     opacity: 0; transform: translateY(6px);
@@ -200,15 +200,30 @@
   @media (max-width: 640px) {
     #AnnouncementBar-{{ section.id }} .rt {
       font-size: {{ section.settings.font_size | default: 20 | minus: 2 }}px;
+      letter-spacing: 1px;
+      word-break: break-word;
+      overflow-wrap: anywhere;
     }
     #AnnouncementBar-{{ section.id }}.has-partner .announcement-bar--container {
       gap: 10px;
       align-items: center;
+      padding: 0 10px;
     }
-    #AnnouncementBar-{{ section.id }}.has-partner .announcement-rotator,
-    #AnnouncementBar-{{ section.id }}.has-partner .announcement-partner {
+    #AnnouncementBar-{{ section.id }}.has-partner .announcement-rotator {
       flex: 1 1 0;
       min-width: 0;
+      width: auto;
+      text-align: left;
+    }
+    #AnnouncementBar-{{ section.id }}.has-partner .announcement-partner {
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: 50%;
+    }
+    #AnnouncementBar-{{ section.id }}.has-partner .announcement {
+      justify-self: start;
+      text-align: left;
+      max-width: 100%;
     }
     #AnnouncementBar-{{ section.id }} .announcement-partner {
       white-space: normal;
