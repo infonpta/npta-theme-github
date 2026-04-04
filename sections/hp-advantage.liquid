@@ -2,7 +2,7 @@
 {{ 'hp-sections.css' | asset_url | stylesheet_tag }}
 
 <section id="hp-advantage-{{ sid }}" class="hp-advantage">
-  <div class="hp-advantage__inner" style="max-width: {{ section.settings.container_width }}px;">
+  <div class="hp-advantage__inner hp-advantage__inner--desktop-{{ section.settings.desktop_layout }} hp-advantage__inner--mobile-{{ section.settings.mobile_layout }}" style="max-width: {{ section.settings.container_width }}px;">
     <div class="hp-advantage__image">
       {%- if section.settings.image != blank -%}
         <img
@@ -32,9 +32,9 @@
       </div>
 
       {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
-        <a href="{{ section.settings.button_link }}" class="btn button-b" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
-          <span class="btn-label-down" style="color: #ffffff;">{{ section.settings.button_text }}</span>
-          <span class="btn-label-down" style="color: #ffffff;">{{ section.settings.button_text }}</span>
+        <a href="{{ section.settings.button_link }}" class="btn button-b" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};padding-left:20px;padding-right:20px;">
+          <span class="btn-label-down" style="color: {{ section.settings.btn_text_color }};">{{ section.settings.button_text }}</span>
+          <span class="btn-label-down" style="color: {{ section.settings.btn_text_color }};">{{ section.settings.button_text }}</span>
         </a>
       {%- endif -%}
     </div>
@@ -61,10 +61,17 @@
 {
   "name": "HP NPTA Advantage",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Side Image" },
+    { "type": "header", "content": "Content" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "The NPTA Advantage" },
     { "type": "text", "id": "button_text", "label": "CTA Button Text", "default": "TALK TO A CAREER ADVISOR TODAY" },
     { "type": "url", "id": "button_link", "label": "CTA Button Link" },
+
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "btn_font_size", "label": "Button Font Size", "default": "14px" },
+    { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#0f828c" },
+
     { "type": "header", "content": "Typography" },
     { "type": "text", "id": "title_size", "label": "Heading Font Size", "default": "clamp(28px, 4vw, 48px)" },
     { "type": "color", "id": "title_color", "label": "Heading Color", "default": "#141414" },
@@ -72,9 +79,28 @@
     { "type": "color", "id": "benefit_title_color", "label": "Benefit Title Color", "default": "#0f828c" },
     { "type": "text", "id": "body_size", "label": "Body Font Size", "default": "clamp(14px, 1.3vw, 16px)" },
     { "type": "color", "id": "body_color", "label": "Body Color", "default": "#555555" },
-    { "type": "text", "id": "btn_font_size", "label": "Button Font Size", "default": "14px" },
-    { "type": "color", "id": "btn_bg_color", "label": "Button Background Color", "default": "#0f828c" },
+
     { "type": "header", "content": "Layout" },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop Layout",
+      "options": [
+        { "value": "image-left", "label": "Image Left / Content Right" },
+        { "value": "image-right", "label": "Content Left / Image Right" }
+      ],
+      "default": "image-left"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Layout",
+      "options": [
+        { "value": "image-top", "label": "Image Top / Content Bottom" },
+        { "value": "content-top", "label": "Content Top / Image Bottom" }
+      ],
+      "default": "image-top"
+    },
     { "type": "text", "id": "container_width", "label": "Container Max Width (px)", "default": "1400" }
   ],
   "blocks": [
