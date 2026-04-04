@@ -70,50 +70,17 @@
 
     .qhp .qhp__actions{
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 14px;
-      margin: 0 0 26px;
+      margin: 0 0 10px;
+    }
+    .qhp .qhp__actions .btn {
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
-    .qhp .qhp__btn{
-      appearance: none;
-      border: 2px solid transparent;
-      border-radius: 8px;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1.12px;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 49px;
-      overflow: hidden;
-      position: relative;
-    }
-    .qhp .qhp__btn .qhp__btn-label{
-      display: block;
-      margin: 0 30px;
-      height: 100%;
-      position: relative;
-      top: -100%;
-      transition: top 0.3s ease;
-      line-height: 49px;
-      white-space: nowrap;
-    }
-    .qhp .qhp__btn:hover .qhp__btn-label{ top: 0%; }
-    .qhp .qhp__btn:active{ transform: translateY(1px); }
-    .qhp .qhp__btn[disabled]{ opacity: .6; cursor: not-allowed; }
-
-    .qhp .qhp__btn--primary{ background: var(--qhp-primary-bg); border-color: var(--qhp-primary-bg); }
-    .qhp .qhp__btn--primary .qhp__btn-label{ color: var(--qhp-primary-text); }
-    .qhp .qhp__btn--secondary{ background: transparent; border-color: var(--qhp-secondary-text); }
-    .qhp .qhp__btn--secondary .qhp__btn-label{ color: var(--qhp-secondary-text); }
-
-    .qhp .qhp__advisor{ margin-top: 10px; font-size: 15px; opacity: .95; }
+    .qhp .qhp__advisor{ margin: 0 0 14px; font-size: 15px; opacity: .95; }
 
     .qhp .qhp__media{
       border-radius: 0;
@@ -131,7 +98,14 @@
     @media (max-width: 900px){
       .qhp .qhp__grid{ grid-template-columns: 1fr; }
       .qhp .qhp__content{ max-width: 100%; }
-      .qhp .qhp__media{ min-height: 220px; }
+      .qhp .qhp__media{
+        min-height: auto;
+        max-height: 400px;
+      }
+      .qhp .qhp__media img{
+        height: auto;
+        max-height: 400px;
+      }
     }
 
     /* Modal */
@@ -601,27 +575,26 @@
         {% endif %}
 
         <div class="qhp__actions">
-          <button
-            type="button"
-            class="qhp__btn qhp__btn--primary"
+          <a href="#"
+            class="btn button-b"
+            style="background-color: {{ section.settings.primary_btn_bg }};"
             data-qhp-open
-            {% if section.blocks.size == 0 %}disabled{% endif %}
           >
-            <span class="qhp__btn-label">{{ section.settings.primary_btn_label }}</span>
-            <span class="qhp__btn-label">{{ section.settings.primary_btn_label }}</span>
-          </button>
+            <span class="btn-label-down" style="color: {{ section.settings.primary_btn_text }};">{{ section.settings.primary_btn_label }}</span>
+            <span class="btn-label-down" style="color: {{ section.settings.primary_btn_text }};">{{ section.settings.primary_btn_label }}</span>
+          </a>
+
+          {% if section.settings.advisor_text != blank %}
+            <div class="qhp__advisor">{{ section.settings.advisor_text }}</div>
+          {% endif %}
 
           {% if section.settings.secondary_btn_label != blank and section.settings.secondary_btn_url != blank %}
-            <a class="qhp__btn qhp__btn--secondary" href="{{ section.settings.secondary_btn_url }}">
-              <span class="qhp__btn-label">{{ section.settings.secondary_btn_label }}</span>
-              <span class="qhp__btn-label">{{ section.settings.secondary_btn_label }}</span>
+            <a class="btn button-outline-hp" href="{{ section.settings.secondary_btn_url }}" style="border: 2px solid {{ section.settings.secondary_btn_text }};">
+              <span class="btn-label-down" style="color: {{ section.settings.secondary_btn_text }};">{{ section.settings.secondary_btn_label }}</span>
+              <span class="btn-label-down" style="color: {{ section.settings.secondary_btn_text }};">{{ section.settings.secondary_btn_label }}</span>
             </a>
           {% endif %}
         </div>
-
-        {% if section.settings.advisor_text != blank %}
-          <div class="qhp__advisor">{{ section.settings.advisor_text }}</div>
-        {% endif %}
       </div>
 
       <div class="qhp__media">
@@ -1428,7 +1401,7 @@
             }
 
             // Bindings
-            openBtns.forEach(function(btn){ btn.addEventListener('click', openModal); });
+            openBtns.forEach(function(btn){ btn.addEventListener('click', function(e){ e.preventDefault(); openModal(); }); });
             closeBtn.addEventListener('click', closeModal);
             backdrop.addEventListener('click', closeModal);
             nextBtn.addEventListener('click', onNext);
