@@ -300,7 +300,7 @@
                     {% if left_variant_id != '' %}
                     <form method="post" action="/cart/add" class="wn-card__form" novalidate>
                         <input type="hidden" name="id" value="{{ left_variant_id }}">
-                        <button type="submit" class="btn button-yg wn-card__btn" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+                        <button type="submit" class="btn wn-card__btn" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.left_btn_label | default: 'Add to Cart' }}</span>
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.left_btn_label | default: 'Add to Cart' }}</span>
                         </button>
@@ -365,7 +365,7 @@
                     {% if right_variant_id != '' %}
                     <form method="post" action="/cart/add" class="wn-card__form" novalidate>
                         <input type="hidden" name="id" value="{{ right_variant_id }}">
-                        <button type="submit" class="btn button-yg wn-card__btn" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
+                        <button type="submit" class="btn wn-card__btn" style="font-size: {{ section.settings.btn_font_size }}; background-color: {{ section.settings.btn_bg_color }};">
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.right_btn_label | default: 'Add to Cart' }}</span>
                         <span class="btn-label-down" style="color: {{ section.settings.btn_label_color }};">{{ block.settings.right_btn_label | default: 'Add to Cart' }}</span>
                         </button>
