@@ -76,7 +76,7 @@
           <a href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
         </span>
 
-      {% when 'collection' and collection.handle %}
+      {% when 'collection' %}
 
         {% if current_tags %}
           <span>{{ collection.title | link_to: collection.url }}</span>
@@ -211,4 +211,13 @@ line-height: 150%; /* 21px */
 
 
   
-</style>
+</style>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% when 'collection' and collection.handle %}"
+  to: "{% when 'collection' %}"
+  position: 1828..1851
+{%- endcomment -%}
